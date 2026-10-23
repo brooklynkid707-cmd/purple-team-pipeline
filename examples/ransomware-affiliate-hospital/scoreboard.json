@@ -1,0 +1,848 @@
+{
+  "summary": {
+    "steps_total": 30,
+    "steps_modelled": 30,
+    "steps_detected": 13,
+    "steps_missed": 17,
+    "coverage_pct": 43.3,
+    "mean_mttd_seconds": 4.6,
+    "median_mttd_seconds": 0.0,
+    "false_positive_alerts": 6,
+    "false_positives_by_stack": {
+      "minisiem": 3,
+      "splunk": 0,
+      "sentinel": 3
+    },
+    "total_alerts": 56,
+    "unattributed_alerts": 8
+  },
+  "steps": [
+    {
+      "step_id": "S01",
+      "technique_id": "T1566.001",
+      "technique_name": "Spearphishing Attachment",
+      "tactic": "initial-access",
+      "start_ts": "2026-10-20T01:00:00Z",
+      "modelled": true,
+      "detected": false,
+      "stacks": [],
+      "mttd_seconds": null,
+      "first_detection": {}
+    },
+    {
+      "step_id": "S02",
+      "technique_id": "T1133",
+      "technique_name": "External Remote Services",
+      "tactic": "initial-access",
+      "start_ts": "2026-10-20T01:30:00Z",
+      "modelled": true,
+      "detected": false,
+      "stacks": [],
+      "mttd_seconds": null,
+      "first_detection": {}
+    },
+    {
+      "step_id": "S03",
+      "technique_id": "T1078",
+      "technique_name": "Valid Accounts",
+      "tactic": "initial-access",
+      "start_ts": "2026-10-20T02:00:00Z",
+      "modelled": true,
+      "detected": true,
+      "stacks": [
+        "minisiem",
+        "sentinel"
+      ],
+      "mttd_seconds": 0.0,
+      "first_detection": {
+        "minisiem": "2026-10-20T01:30:00Z",
+        "sentinel": "2026-10-20T02:00:00Z"
+      }
+    },
+    {
+      "step_id": "S04",
+      "technique_id": "T1059.001",
+      "technique_name": "PowerShell",
+      "tactic": "execution",
+      "start_ts": "2026-10-20T02:30:00Z",
+      "modelled": true,
+      "detected": true,
+      "stacks": [
+        "minisiem",
+        "sentinel",
+        "splunk"
+      ],
+      "mttd_seconds": 0.0,
+      "first_detection": {
+        "minisiem": "2026-10-20T02:30:00Z",
+        "splunk": "2026-10-20T02:30:00Z",
+        "sentinel": "2026-10-20T02:30:00Z"
+      }
+    },
+    {
+      "step_id": "S05",
+      "technique_id": "T1569.002",
+      "technique_name": "System Services: Service Execution",
+      "tactic": "execution",
+      "start_ts": "2026-10-20T03:00:00Z",
+      "modelled": true,
+      "detected": false,
+      "stacks": [],
+      "mttd_seconds": null,
+      "first_detection": {}
+    },
+    {
+      "step_id": "S06",
+      "technique_id": "T1053.005",
+      "technique_name": "Scheduled Task",
+      "tactic": "persistence",
+      "start_ts": "2026-10-20T03:30:00Z",
+      "modelled": true,
+      "detected": true,
+      "stacks": [
+        "sentinel",
+        "splunk"
+      ],
+      "mttd_seconds": 0.0,
+      "first_detection": {
+        "splunk": "2026-10-20T03:30:00Z",
+        "sentinel": "2026-10-20T03:30:01Z"
+      }
+    },
+    {
+      "step_id": "S07",
+      "technique_id": "T1543.003",
+      "technique_name": "Create or Modify System Process: Windows Service",
+      "tactic": "persistence",
+      "start_ts": "2026-10-20T04:00:00Z",
+      "modelled": true,
+      "detected": true,
+      "stacks": [
+        "minisiem"
+      ],
+      "mttd_seconds": 0.0,
+      "first_detection": {
+        "minisiem": "2026-10-20T03:00:00Z"
+      }
+    },
+    {
+      "step_id": "S08",
+      "technique_id": "T1548.002",
+      "technique_name": "Abuse Elevation Control: Bypass UAC",
+      "tactic": "privilege-escalation",
+      "start_ts": "2026-10-20T04:30:00Z",
+      "modelled": true,
+      "detected": false,
+      "stacks": [],
+      "mttd_seconds": null,
+      "first_detection": {}
+    },
+    {
+      "step_id": "S09",
+      "technique_id": "T1134",
+      "technique_name": "Access Token Manipulation",
+      "tactic": "privilege-escalation",
+      "start_ts": "2026-10-20T05:00:00Z",
+      "modelled": true,
+      "detected": false,
+      "stacks": [],
+      "mttd_seconds": null,
+      "first_detection": {}
+    },
+    {
+      "step_id": "S10",
+      "technique_id": "T1562.001",
+      "technique_name": "Impair Defenses: Disable or Modify Tools",
+      "tactic": "defense-evasion",
+      "start_ts": "2026-10-20T05:30:00Z",
+      "modelled": true,
+      "detected": true,
+      "stacks": [
+        "sentinel"
+      ],
+      "mttd_seconds": 0.0,
+      "first_detection": {
+        "sentinel": "2026-10-20T05:30:00Z"
+      }
+    },
+    {
+      "step_id": "S11",
+      "technique_id": "T1070.001",
+      "technique_name": "Indicator Removal: Clear Windows Event Logs",
+      "tactic": "defense-evasion",
+      "start_ts": "2026-10-20T06:00:00Z",
+      "modelled": true,
+      "detected": true,
+      "stacks": [
+        "minisiem",
+        "sentinel",
+        "splunk"
+      ],
+      "mttd_seconds": 0.0,
+      "first_detection": {
+        "minisiem": "2026-10-20T06:00:01Z",
+        "splunk": "2026-10-20T06:00:00Z",
+        "sentinel": "2026-10-20T06:00:01Z"
+      }
+    },
+    {
+      "step_id": "S12",
+      "technique_id": "T1003.001",
+      "technique_name": "OS Credential Dumping: LSASS Memory",
+      "tactic": "credential-access",
+      "start_ts": "2026-10-20T06:30:00Z",
+      "modelled": true,
+      "detected": true,
+      "stacks": [
+        "minisiem",
+        "splunk"
+      ],
+      "mttd_seconds": 0.0,
+      "first_detection": {
+        "minisiem": "2026-10-20T06:30:07Z",
+        "splunk": "2026-10-20T06:30:00Z"
+      }
+    },
+    {
+      "step_id": "S13",
+      "technique_id": "T1558.003",
+      "technique_name": "Steal or Forge Kerberos Tickets: Kerberoasting",
+      "tactic": "credential-access",
+      "start_ts": "2026-10-20T07:00:00Z",
+      "modelled": true,
+      "detected": false,
+      "stacks": [],
+      "mttd_seconds": null,
+      "first_detection": {}
+    },
+    {
+      "step_id": "S14",
+      "technique_id": "T1110.003",
+      "technique_name": "Brute Force: Password Spraying",
+      "tactic": "credential-access",
+      "start_ts": "2026-10-20T07:30:00Z",
+      "modelled": true,
+      "detected": true,
+      "stacks": [
+        "minisiem",
+        "sentinel",
+        "splunk"
+      ],
+      "mttd_seconds": 0.0,
+      "first_detection": {
+        "minisiem": "2026-10-20T07:31:38Z",
+        "splunk": "2026-10-20T07:30:00Z",
+        "sentinel": "2026-10-20T07:00:00Z"
+      }
+    },
+    {
+      "step_id": "S15",
+      "technique_id": "T1087.002",
+      "technique_name": "Account Discovery: Domain Account",
+      "tactic": "discovery",
+      "start_ts": "2026-10-20T08:00:00Z",
+      "modelled": true,
+      "detected": false,
+      "stacks": [],
+      "mttd_seconds": null,
+      "first_detection": {}
+    },
+    {
+      "step_id": "S16",
+      "technique_id": "T1018",
+      "technique_name": "Remote System Discovery",
+      "tactic": "discovery",
+      "start_ts": "2026-10-20T08:30:00Z",
+      "modelled": true,
+      "detected": false,
+      "stacks": [],
+      "mttd_seconds": null,
+      "first_detection": {}
+    },
+    {
+      "step_id": "S17",
+      "technique_id": "T1482",
+      "technique_name": "Domain Trust Discovery",
+      "tactic": "discovery",
+      "start_ts": "2026-10-20T09:00:00Z",
+      "modelled": true,
+      "detected": false,
+      "stacks": [],
+      "mttd_seconds": null,
+      "first_detection": {}
+    },
+    {
+      "step_id": "S18",
+      "technique_id": "T1021.001",
+      "technique_name": "Remote Services: RDP",
+      "tactic": "lateral-movement",
+      "start_ts": "2026-10-20T09:30:00Z",
+      "modelled": true,
+      "detected": true,
+      "stacks": [
+        "splunk"
+      ],
+      "mttd_seconds": 0.0,
+      "first_detection": {
+        "splunk": "2026-10-20T09:00:00Z"
+      }
+    },
+    {
+      "step_id": "S19",
+      "technique_id": "T1021.002",
+      "technique_name": "Remote Services: SMB/Windows Admin Shares",
+      "tactic": "lateral-movement",
+      "start_ts": "2026-10-20T10:00:00Z",
+      "modelled": true,
+      "detected": true,
+      "stacks": [
+        "splunk"
+      ],
+      "mttd_seconds": 0.0,
+      "first_detection": {
+        "splunk": "2026-10-20T10:00:00Z"
+      }
+    },
+    {
+      "step_id": "S20",
+      "technique_id": "T1550.002",
+      "technique_name": "Use Alternate Authentication Material: Pass the Hash",
+      "tactic": "lateral-movement",
+      "start_ts": "2026-10-20T10:30:00Z",
+      "modelled": true,
+      "detected": false,
+      "stacks": [],
+      "mttd_seconds": null,
+      "first_detection": {}
+    },
+    {
+      "step_id": "S21",
+      "technique_id": "T1570",
+      "technique_name": "Lateral Tool Transfer",
+      "tactic": "lateral-movement",
+      "start_ts": "2026-10-20T11:00:00Z",
+      "modelled": true,
+      "detected": false,
+      "stacks": [],
+      "mttd_seconds": null,
+      "first_detection": {}
+    },
+    {
+      "step_id": "S22",
+      "technique_id": "T1560.001",
+      "technique_name": "Archive Collected Data: Archive via Utility",
+      "tactic": "collection",
+      "start_ts": "2026-10-20T11:30:00Z",
+      "modelled": true,
+      "detected": false,
+      "stacks": [],
+      "mttd_seconds": null,
+      "first_detection": {}
+    },
+    {
+      "step_id": "S23",
+      "technique_id": "T1005",
+      "technique_name": "Data from Local System",
+      "tactic": "collection",
+      "start_ts": "2026-10-20T12:00:00Z",
+      "modelled": true,
+      "detected": false,
+      "stacks": [],
+      "mttd_seconds": null,
+      "first_detection": {}
+    },
+    {
+      "step_id": "S24",
+      "technique_id": "T1071.001",
+      "technique_name": "Application Layer Protocol: Web Protocols",
+      "tactic": "command-and-control",
+      "start_ts": "2026-10-20T12:30:00Z",
+      "modelled": true,
+      "detected": true,
+      "stacks": [
+        "minisiem",
+        "splunk"
+      ],
+      "mttd_seconds": 60.0,
+      "first_detection": {
+        "minisiem": "2026-10-20T12:31:00Z",
+        "splunk": "2026-10-20T12:31:00Z"
+      }
+    },
+    {
+      "step_id": "S25",
+      "technique_id": "T1105",
+      "technique_name": "Ingress Tool Transfer",
+      "tactic": "command-and-control",
+      "start_ts": "2026-10-20T13:00:00Z",
+      "modelled": true,
+      "detected": true,
+      "stacks": [
+        "splunk"
+      ],
+      "mttd_seconds": 0.0,
+      "first_detection": {
+        "splunk": "2026-10-20T12:31:00Z"
+      }
+    },
+    {
+      "step_id": "S26",
+      "technique_id": "T1567.002",
+      "technique_name": "Exfiltration to Cloud Storage",
+      "tactic": "exfiltration",
+      "start_ts": "2026-10-20T13:30:00Z",
+      "modelled": true,
+      "detected": false,
+      "stacks": [],
+      "mttd_seconds": null,
+      "first_detection": {}
+    },
+    {
+      "step_id": "S27",
+      "technique_id": "T1041",
+      "technique_name": "Exfiltration Over C2 Channel",
+      "tactic": "exfiltration",
+      "start_ts": "2026-10-20T14:00:00Z",
+      "modelled": true,
+      "detected": true,
+      "stacks": [
+        "splunk"
+      ],
+      "mttd_seconds": 0.0,
+      "first_detection": {
+        "splunk": "2026-10-20T13:00:00Z"
+      }
+    },
+    {
+      "step_id": "S28",
+      "technique_id": "T1489",
+      "technique_name": "Service Stop",
+      "tactic": "impact",
+      "start_ts": "2026-10-20T14:30:00Z",
+      "modelled": true,
+      "detected": false,
+      "stacks": [],
+      "mttd_seconds": null,
+      "first_detection": {}
+    },
+    {
+      "step_id": "S29",
+      "technique_id": "T1490",
+      "technique_name": "Inhibit System Recovery",
+      "tactic": "impact",
+      "start_ts": "2026-10-20T15:00:00Z",
+      "modelled": true,
+      "detected": false,
+      "stacks": [],
+      "mttd_seconds": null,
+      "first_detection": {}
+    },
+    {
+      "step_id": "S30",
+      "technique_id": "T1486",
+      "technique_name": "Data Encrypted for Impact",
+      "tactic": "impact",
+      "start_ts": "2026-10-20T15:30:00Z",
+      "modelled": true,
+      "detected": false,
+      "stacks": [],
+      "mttd_seconds": null,
+      "first_detection": {}
+    }
+  ],
+  "coverage_by_tactic": {
+    "initial-access": {
+      "total": 3,
+      "detected": 1,
+      "coverage_pct": 33.3
+    },
+    "execution": {
+      "total": 2,
+      "detected": 1,
+      "coverage_pct": 50.0
+    },
+    "persistence": {
+      "total": 2,
+      "detected": 2,
+      "coverage_pct": 100.0
+    },
+    "privilege-escalation": {
+      "total": 2,
+      "detected": 0,
+      "coverage_pct": 0.0
+    },
+    "defense-evasion": {
+      "total": 2,
+      "detected": 2,
+      "coverage_pct": 100.0
+    },
+    "credential-access": {
+      "total": 3,
+      "detected": 2,
+      "coverage_pct": 66.7
+    },
+    "discovery": {
+      "total": 3,
+      "detected": 0,
+      "coverage_pct": 0.0
+    },
+    "lateral-movement": {
+      "total": 4,
+      "detected": 2,
+      "coverage_pct": 50.0
+    },
+    "collection": {
+      "total": 2,
+      "detected": 0,
+      "coverage_pct": 0.0
+    },
+    "command-and-control": {
+      "total": 2,
+      "detected": 2,
+      "coverage_pct": 100.0
+    },
+    "exfiltration": {
+      "total": 2,
+      "detected": 1,
+      "coverage_pct": 50.0
+    },
+    "impact": {
+      "total": 3,
+      "detected": 0,
+      "coverage_pct": 0.0
+    }
+  },
+  "coverage_by_stack": {
+    "minisiem": {
+      "steps_detected": 7,
+      "coverage_pct": 23.3,
+      "mean_mttd_seconds": 23.7,
+      "step_ids": [
+        "S03",
+        "S04",
+        "S07",
+        "S11",
+        "S12",
+        "S14",
+        "S24"
+      ]
+    },
+    "splunk": {
+      "steps_detected": 10,
+      "coverage_pct": 33.3,
+      "mean_mttd_seconds": 6.0,
+      "step_ids": [
+        "S04",
+        "S06",
+        "S11",
+        "S12",
+        "S14",
+        "S18",
+        "S19",
+        "S24",
+        "S25",
+        "S27"
+      ]
+    },
+    "sentinel": {
+      "steps_detected": 6,
+      "coverage_pct": 20.0,
+      "mean_mttd_seconds": 0.3,
+      "step_ids": [
+        "S03",
+        "S04",
+        "S06",
+        "S10",
+        "S11",
+        "S14"
+      ]
+    }
+  },
+  "venn": {
+    "membership": {
+      "(missed)": [
+        "S01",
+        "S02",
+        "S05",
+        "S08",
+        "S09",
+        "S13",
+        "S15",
+        "S16",
+        "S17",
+        "S20",
+        "S21",
+        "S22",
+        "S23",
+        "S26",
+        "S28",
+        "S29",
+        "S30"
+      ],
+      "minisiem": [
+        "S07"
+      ],
+      "minisiem+sentinel": [
+        "S03"
+      ],
+      "minisiem+sentinel+splunk": [
+        "S04",
+        "S11",
+        "S14"
+      ],
+      "minisiem+splunk": [
+        "S12",
+        "S24"
+      ],
+      "sentinel": [
+        "S10"
+      ],
+      "sentinel+splunk": [
+        "S06"
+      ],
+      "splunk": [
+        "S18",
+        "S19",
+        "S25",
+        "S27"
+      ]
+    },
+    "only": {
+      "minisiem": 1,
+      "splunk": 4,
+      "sentinel": 1
+    },
+    "all_three": 3
+  },
+  "false_positives": [
+    {
+      "stack": "minisiem",
+      "rule": "1a2b3c01-0002-4000-8000-000000000002",
+      "rule_title": "New User Account Created (4720)",
+      "techniques": [
+        "T1136.001"
+      ],
+      "timestamp": "2026-10-20T09:12:00Z",
+      "entities": {
+        "user": "rpatel",
+        "host": "DC-01"
+      }
+    },
+    {
+      "stack": "minisiem",
+      "rule": "1a2b3c01-0002-4000-8000-000000000003",
+      "rule_title": "User Added To Privileged Local Group",
+      "techniques": [
+        "T1098",
+        "T1136.001"
+      ],
+      "timestamp": "2026-10-20T09:12:30Z",
+      "entities": {
+        "user": "rpatel",
+        "host": "DC-01"
+      }
+    },
+    {
+      "stack": "minisiem",
+      "rule": "1a2b3c01-0002-4000-8000-000000000002",
+      "rule_title": "New User Account Created (4720)",
+      "techniques": [
+        "T1136.001"
+      ],
+      "timestamp": "2026-10-20T13:12:00Z",
+      "entities": {
+        "user": "rpatel",
+        "host": "DC-01"
+      }
+    },
+    {
+      "stack": "sentinel",
+      "rule": "sec-4720-local-account-created",
+      "rule_title": "Windows - User account created on a server (4720)",
+      "techniques": [
+        "T1136",
+        "T1136.001"
+      ],
+      "timestamp": "2026-10-20T09:12:00Z",
+      "entities": {
+        "user": "rpatel",
+        "target_user": "newhire.cruz6",
+        "host": "DC-01"
+      }
+    },
+    {
+      "stack": "sentinel",
+      "rule": "sec-4720-local-account-created",
+      "rule_title": "Windows - User account created on a server (4720)",
+      "techniques": [
+        "T1136",
+        "T1136.001"
+      ],
+      "timestamp": "2026-10-20T13:12:00Z",
+      "entities": {
+        "user": "rpatel",
+        "target_user": "newhire.diaz7",
+        "host": "DC-01"
+      }
+    },
+    {
+      "stack": "sentinel",
+      "rule": "sec-4728-4732-privileged-group-add",
+      "rule_title": "Windows - Member added to a privileged local or domain group (4728/4732/4756)",
+      "techniques": [
+        "T1098",
+        "T1078.002"
+      ],
+      "timestamp": "2026-10-20T09:12:30Z",
+      "entities": {
+        "user": "rpatel",
+        "host": "DC-01"
+      }
+    }
+  ],
+  "unattributed": [
+    {
+      "stack": "minisiem",
+      "rule": "corr-002-win-bruteforce",
+      "rule_title": "Windows Logon Brute Force (threshold)",
+      "techniques": [
+        "T1110.001"
+      ],
+      "timestamp": "2026-10-20T07:32:06Z",
+      "entities": {
+        "user": "nrivera",
+        "src_ip": "198.51.100.77",
+        "host": "DC-01"
+      }
+    },
+    {
+      "stack": "minisiem",
+      "rule": "1a2b3c01-0002-4000-8000-000000000002",
+      "rule_title": "New User Account Created (4720)",
+      "techniques": [
+        "T1136.001"
+      ],
+      "timestamp": "2026-10-20T09:12:00Z",
+      "entities": {
+        "user": "rpatel",
+        "host": "DC-01"
+      }
+    },
+    {
+      "stack": "minisiem",
+      "rule": "1a2b3c01-0004-4000-8000-000000000002",
+      "rule_title": "DNS Query For Threat-Intel Listed Domain",
+      "techniques": [
+        "T1071.004",
+        "T1568"
+      ],
+      "timestamp": "2026-10-20T12:30:00Z",
+      "entities": {
+        "user": "nrivera",
+        "host": "WS-RAD-03"
+      }
+    },
+    {
+      "stack": "minisiem",
+      "rule": "1a2b3c01-0004-4000-8000-000000000002",
+      "rule_title": "DNS Query For Threat-Intel Listed Domain",
+      "techniques": [
+        "T1071.004",
+        "T1568"
+      ],
+      "timestamp": "2026-10-20T13:00:00Z",
+      "entities": {
+        "user": "nrivera",
+        "host": "WS-RAD-03"
+      }
+    },
+    {
+      "stack": "minisiem",
+      "rule": "1a2b3c01-0002-4000-8000-000000000002",
+      "rule_title": "New User Account Created (4720)",
+      "techniques": [
+        "T1136.001"
+      ],
+      "timestamp": "2026-10-20T13:12:00Z",
+      "entities": {
+        "user": "rpatel",
+        "host": "DC-01"
+      }
+    },
+    {
+      "stack": "splunk",
+      "rule": "TDL-025",
+      "rule_title": "DNS Query From Scripting Or LOLBin Process",
+      "techniques": [
+        "T1071.004",
+        "T1218"
+      ],
+      "timestamp": "2026-10-20T12:30:00Z",
+      "entities": {
+        "host": "WS-RAD-03"
+      }
+    },
+    {
+      "stack": "sentinel",
+      "rule": "sec-4720-local-account-created",
+      "rule_title": "Windows - User account created on a server (4720)",
+      "techniques": [
+        "T1136",
+        "T1136.001"
+      ],
+      "timestamp": "2026-10-20T09:12:00Z",
+      "entities": {
+        "user": "rpatel",
+        "target_user": "newhire.diaz8",
+        "host": "DC-01"
+      }
+    },
+    {
+      "stack": "sentinel",
+      "rule": "sec-4720-local-account-created",
+      "rule_title": "Windows - User account created on a server (4720)",
+      "techniques": [
+        "T1136",
+        "T1136.001"
+      ],
+      "timestamp": "2026-10-20T13:12:00Z",
+      "entities": {
+        "user": "rpatel",
+        "target_user": "newhire.cook2",
+        "host": "DC-01"
+      }
+    }
+  ],
+  "status_by_step": {
+    "S01": "missed",
+    "S02": "missed",
+    "S03": "detected",
+    "S04": "detected",
+    "S05": "missed",
+    "S06": "detected",
+    "S07": "partial",
+    "S08": "missed",
+    "S09": "missed",
+    "S10": "partial",
+    "S11": "detected",
+    "S12": "detected",
+    "S13": "missed",
+    "S14": "detected",
+    "S15": "missed",
+    "S16": "missed",
+    "S17": "missed",
+    "S18": "partial",
+    "S19": "partial",
+    "S20": "missed",
+    "S21": "missed",
+    "S22": "missed",
+    "S23": "missed",
+    "S24": "detected",
+    "S25": "partial",
+    "S26": "missed",
+    "S27": "partial",
+    "S28": "missed",
+    "S29": "missed",
+    "S30": "missed"
+  }
+}

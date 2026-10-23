@@ -1,0 +1,771 @@
+[
+  {
+    "alert_ref": "minisiem:1a2b3c01-0002-4000-8000-000000000011",
+    "stack": "minisiem",
+    "stack_techniques": [
+      "T1021.001",
+      "T1078"
+    ],
+    "copilot_severity": "critical",
+    "copilot_technique": "T1021.001",
+    "copilot_confidence": 0.61,
+    "flags": [],
+    "needs_human": true
+  },
+  {
+    "alert_ref": "minisiem:1a2b3c01-0002-4000-8000-000000000004",
+    "stack": "minisiem",
+    "stack_techniques": [
+      "T1059.001",
+      "T1027"
+    ],
+    "copilot_severity": "high",
+    "copilot_technique": "T1059.001",
+    "copilot_confidence": 0.58,
+    "flags": [],
+    "needs_human": true
+  },
+  {
+    "alert_ref": "minisiem:1a2b3c01-0002-4000-8000-000000000009",
+    "stack": "minisiem",
+    "stack_techniques": [
+      "T1566.001",
+      "T1204.002"
+    ],
+    "copilot_severity": "medium",
+    "copilot_technique": "T1078",
+    "copilot_confidence": 0.2,
+    "flags": [
+      "no_rule_matched"
+    ],
+    "needs_human": true
+  },
+  {
+    "alert_ref": "minisiem:1a2b3c01-0002-4000-8000-000000000006",
+    "stack": "minisiem",
+    "stack_techniques": [
+      "T1543.003"
+    ],
+    "copilot_severity": "high",
+    "copilot_technique": "T1543.003",
+    "copilot_confidence": 0.58,
+    "flags": [],
+    "needs_human": true
+  },
+  {
+    "alert_ref": "minisiem:1a2b3c01-0002-4000-8000-000000000001",
+    "stack": "minisiem",
+    "stack_techniques": [
+      "T1070.001"
+    ],
+    "copilot_severity": "medium",
+    "copilot_technique": "T1078",
+    "copilot_confidence": 0.2,
+    "flags": [
+      "no_rule_matched"
+    ],
+    "needs_human": true
+  },
+  {
+    "alert_ref": "minisiem:1a2b3c01-0002-4000-8000-000000000008",
+    "stack": "minisiem",
+    "stack_techniques": [
+      "T1003.001"
+    ],
+    "copilot_severity": "critical",
+    "copilot_technique": "T1003.001",
+    "copilot_confidence": 0.58,
+    "flags": [],
+    "needs_human": true
+  },
+  {
+    "alert_ref": "minisiem:corr-003-password-spray",
+    "stack": "minisiem",
+    "stack_techniques": [
+      "T1110.003"
+    ],
+    "copilot_severity": "high",
+    "copilot_technique": "T1110.003",
+    "copilot_confidence": 0.58,
+    "flags": [],
+    "needs_human": true
+  },
+  {
+    "alert_ref": "minisiem:corr-002-win-bruteforce",
+    "stack": "minisiem",
+    "stack_techniques": [
+      "T1110.001"
+    ],
+    "copilot_severity": "high",
+    "copilot_technique": "T1110.001",
+    "copilot_confidence": 0.58,
+    "flags": [],
+    "needs_human": true
+  },
+  {
+    "alert_ref": "minisiem:1a2b3c01-0002-4000-8000-000000000002",
+    "stack": "minisiem",
+    "stack_techniques": [
+      "T1136.001"
+    ],
+    "copilot_severity": "high",
+    "copilot_technique": "T1136.001",
+    "copilot_confidence": 0.58,
+    "flags": [],
+    "needs_human": true
+  },
+  {
+    "alert_ref": "minisiem:1a2b3c01-0004-4000-8000-000000000002",
+    "stack": "minisiem",
+    "stack_techniques": [
+      "T1071.004",
+      "T1568"
+    ],
+    "copilot_severity": "medium",
+    "copilot_technique": "T1078",
+    "copilot_confidence": 0.2,
+    "flags": [
+      "no_rule_matched"
+    ],
+    "needs_human": true
+  },
+  {
+    "alert_ref": "minisiem:1a2b3c01-0004-4000-8000-000000000003",
+    "stack": "minisiem",
+    "stack_techniques": [
+      "T1071",
+      "T1102"
+    ],
+    "copilot_severity": "medium",
+    "copilot_technique": "T1078",
+    "copilot_confidence": 0.2,
+    "flags": [
+      "no_rule_matched"
+    ],
+    "needs_human": true
+  },
+  {
+    "alert_ref": "minisiem:1a2b3c01-0004-4000-8000-000000000003",
+    "stack": "minisiem",
+    "stack_techniques": [
+      "T1071",
+      "T1102"
+    ],
+    "copilot_severity": "medium",
+    "copilot_technique": "T1078",
+    "copilot_confidence": 0.2,
+    "flags": [
+      "no_rule_matched"
+    ],
+    "needs_human": true
+  },
+  {
+    "alert_ref": "minisiem:1a2b3c01-0004-4000-8000-000000000003",
+    "stack": "minisiem",
+    "stack_techniques": [
+      "T1071",
+      "T1102"
+    ],
+    "copilot_severity": "medium",
+    "copilot_technique": "T1078",
+    "copilot_confidence": 0.2,
+    "flags": [
+      "no_rule_matched"
+    ],
+    "needs_human": true
+  },
+  {
+    "alert_ref": "minisiem:corr-011-beaconing",
+    "stack": "minisiem",
+    "stack_techniques": [
+      "T1071.001",
+      "T1573"
+    ],
+    "copilot_severity": "high",
+    "copilot_technique": "T1071.001",
+    "copilot_confidence": 0.66,
+    "flags": [],
+    "needs_human": true
+  },
+  {
+    "alert_ref": "minisiem:1a2b3c01-0004-4000-8000-000000000003",
+    "stack": "minisiem",
+    "stack_techniques": [
+      "T1071",
+      "T1102"
+    ],
+    "copilot_severity": "medium",
+    "copilot_technique": "T1078",
+    "copilot_confidence": 0.2,
+    "flags": [
+      "no_rule_matched"
+    ],
+    "needs_human": true
+  },
+  {
+    "alert_ref": "minisiem:1a2b3c01-0004-4000-8000-000000000003",
+    "stack": "minisiem",
+    "stack_techniques": [
+      "T1071",
+      "T1102"
+    ],
+    "copilot_severity": "medium",
+    "copilot_technique": "T1078",
+    "copilot_confidence": 0.2,
+    "flags": [
+      "no_rule_matched"
+    ],
+    "needs_human": true
+  },
+  {
+    "alert_ref": "minisiem:corr-011-beaconing",
+    "stack": "minisiem",
+    "stack_techniques": [
+      "T1071.001",
+      "T1573"
+    ],
+    "copilot_severity": "high",
+    "copilot_technique": "T1071.001",
+    "copilot_confidence": 0.66,
+    "flags": [],
+    "needs_human": true
+  },
+  {
+    "alert_ref": "minisiem:1a2b3c01-0004-4000-8000-000000000002",
+    "stack": "minisiem",
+    "stack_techniques": [
+      "T1071.004",
+      "T1568"
+    ],
+    "copilot_severity": "medium",
+    "copilot_technique": "T1078",
+    "copilot_confidence": 0.2,
+    "flags": [
+      "no_rule_matched"
+    ],
+    "needs_human": true
+  },
+  {
+    "alert_ref": "minisiem:1a2b3c01-0002-4000-8000-000000000002",
+    "stack": "minisiem",
+    "stack_techniques": [
+      "T1136.001"
+    ],
+    "copilot_severity": "high",
+    "copilot_technique": "T1136.001",
+    "copilot_confidence": 0.58,
+    "flags": [],
+    "needs_human": true
+  },
+  {
+    "alert_ref": "splunk:TDL-002",
+    "stack": "splunk",
+    "stack_techniques": [
+      "T1110.003"
+    ],
+    "copilot_severity": "high",
+    "copilot_technique": "T1110.003",
+    "copilot_confidence": 0.58,
+    "flags": [],
+    "needs_human": true
+  },
+  {
+    "alert_ref": "splunk:TDL-005",
+    "stack": "splunk",
+    "stack_techniques": [
+      "T1021.001"
+    ],
+    "copilot_severity": "high",
+    "copilot_technique": "T1219",
+    "copilot_confidence": 0.48,
+    "flags": [],
+    "needs_human": true
+  },
+  {
+    "alert_ref": "splunk:TDL-006",
+    "stack": "splunk",
+    "stack_techniques": [
+      "T1021.002"
+    ],
+    "copilot_severity": "high",
+    "copilot_technique": "T1219",
+    "copilot_confidence": 0.58,
+    "flags": [],
+    "needs_human": true
+  },
+  {
+    "alert_ref": "splunk:TDL-006",
+    "stack": "splunk",
+    "stack_techniques": [
+      "T1021.002"
+    ],
+    "copilot_severity": "high",
+    "copilot_technique": "T1219",
+    "copilot_confidence": 0.58,
+    "flags": [],
+    "needs_human": true
+  },
+  {
+    "alert_ref": "splunk:TDL-007",
+    "stack": "splunk",
+    "stack_techniques": [
+      "T1059.001",
+      "T1027.010"
+    ],
+    "copilot_severity": "high",
+    "copilot_technique": "T1059.001",
+    "copilot_confidence": 0.58,
+    "flags": [],
+    "needs_human": true
+  },
+  {
+    "alert_ref": "splunk:TDL-007",
+    "stack": "splunk",
+    "stack_techniques": [
+      "T1059.001",
+      "T1027.010"
+    ],
+    "copilot_severity": "high",
+    "copilot_technique": "T1059.001",
+    "copilot_confidence": 0.58,
+    "flags": [],
+    "needs_human": true
+  },
+  {
+    "alert_ref": "splunk:TDL-008",
+    "stack": "splunk",
+    "stack_techniques": [
+      "T1053.005"
+    ],
+    "copilot_severity": "medium",
+    "copilot_technique": "T1053.005",
+    "copilot_confidence": 0.58,
+    "flags": [],
+    "needs_human": true
+  },
+  {
+    "alert_ref": "splunk:TDL-008",
+    "stack": "splunk",
+    "stack_techniques": [
+      "T1053.005"
+    ],
+    "copilot_severity": "medium",
+    "copilot_technique": "T1053.005",
+    "copilot_confidence": 0.58,
+    "flags": [],
+    "needs_human": true
+  },
+  {
+    "alert_ref": "splunk:TDL-011",
+    "stack": "splunk",
+    "stack_techniques": [
+      "T1071.001",
+      "T1571"
+    ],
+    "copilot_severity": "high",
+    "copilot_technique": "T1071.001",
+    "copilot_confidence": 0.58,
+    "flags": [],
+    "needs_human": true
+  },
+  {
+    "alert_ref": "splunk:TDL-012",
+    "stack": "splunk",
+    "stack_techniques": [
+      "T1566.001",
+      "T1204.002"
+    ],
+    "copilot_severity": "medium",
+    "copilot_technique": "T1078",
+    "copilot_confidence": 0.2,
+    "flags": [
+      "no_rule_matched"
+    ],
+    "needs_human": true
+  },
+  {
+    "alert_ref": "splunk:TDL-013",
+    "stack": "splunk",
+    "stack_techniques": [
+      "T1059",
+      "T1218"
+    ],
+    "copilot_severity": "medium",
+    "copilot_technique": "T1078",
+    "copilot_confidence": 0.2,
+    "flags": [
+      "no_rule_matched"
+    ],
+    "needs_human": true
+  },
+  {
+    "alert_ref": "splunk:TDL-013",
+    "stack": "splunk",
+    "stack_techniques": [
+      "T1059",
+      "T1218"
+    ],
+    "copilot_severity": "medium",
+    "copilot_technique": "T1078",
+    "copilot_confidence": 0.2,
+    "flags": [
+      "no_rule_matched"
+    ],
+    "needs_human": true
+  },
+  {
+    "alert_ref": "splunk:TDL-013",
+    "stack": "splunk",
+    "stack_techniques": [
+      "T1059",
+      "T1218"
+    ],
+    "copilot_severity": "medium",
+    "copilot_technique": "T1078",
+    "copilot_confidence": 0.2,
+    "flags": [
+      "no_rule_matched"
+    ],
+    "needs_human": true
+  },
+  {
+    "alert_ref": "splunk:TDL-013",
+    "stack": "splunk",
+    "stack_techniques": [
+      "T1059",
+      "T1218"
+    ],
+    "copilot_severity": "medium",
+    "copilot_technique": "T1078",
+    "copilot_confidence": 0.2,
+    "flags": [
+      "no_rule_matched"
+    ],
+    "needs_human": true
+  },
+  {
+    "alert_ref": "splunk:TDL-013",
+    "stack": "splunk",
+    "stack_techniques": [
+      "T1059",
+      "T1218"
+    ],
+    "copilot_severity": "medium",
+    "copilot_technique": "T1078",
+    "copilot_confidence": 0.2,
+    "flags": [
+      "no_rule_matched"
+    ],
+    "needs_human": true
+  },
+  {
+    "alert_ref": "splunk:TDL-013",
+    "stack": "splunk",
+    "stack_techniques": [
+      "T1059",
+      "T1218"
+    ],
+    "copilot_severity": "medium",
+    "copilot_technique": "T1078",
+    "copilot_confidence": 0.2,
+    "flags": [
+      "no_rule_matched"
+    ],
+    "needs_human": true
+  },
+  {
+    "alert_ref": "splunk:TDL-013",
+    "stack": "splunk",
+    "stack_techniques": [
+      "T1059",
+      "T1218"
+    ],
+    "copilot_severity": "medium",
+    "copilot_technique": "T1078",
+    "copilot_confidence": 0.2,
+    "flags": [
+      "no_rule_matched"
+    ],
+    "needs_human": true
+  },
+  {
+    "alert_ref": "splunk:TDL-013",
+    "stack": "splunk",
+    "stack_techniques": [
+      "T1059",
+      "T1218"
+    ],
+    "copilot_severity": "medium",
+    "copilot_technique": "T1078",
+    "copilot_confidence": 0.2,
+    "flags": [
+      "no_rule_matched"
+    ],
+    "needs_human": true
+  },
+  {
+    "alert_ref": "splunk:TDL-013",
+    "stack": "splunk",
+    "stack_techniques": [
+      "T1059",
+      "T1218"
+    ],
+    "copilot_severity": "medium",
+    "copilot_technique": "T1078",
+    "copilot_confidence": 0.2,
+    "flags": [
+      "no_rule_matched"
+    ],
+    "needs_human": true
+  },
+  {
+    "alert_ref": "splunk:TDL-013",
+    "stack": "splunk",
+    "stack_techniques": [
+      "T1059",
+      "T1218"
+    ],
+    "copilot_severity": "medium",
+    "copilot_technique": "T1078",
+    "copilot_confidence": 0.2,
+    "flags": [
+      "no_rule_matched"
+    ],
+    "needs_human": true
+  },
+  {
+    "alert_ref": "splunk:TDL-013",
+    "stack": "splunk",
+    "stack_techniques": [
+      "T1059",
+      "T1218"
+    ],
+    "copilot_severity": "medium",
+    "copilot_technique": "T1078",
+    "copilot_confidence": 0.2,
+    "flags": [
+      "no_rule_matched"
+    ],
+    "needs_human": true
+  },
+  {
+    "alert_ref": "splunk:TDL-014",
+    "stack": "splunk",
+    "stack_techniques": [
+      "T1003.001"
+    ],
+    "copilot_severity": "critical",
+    "copilot_technique": "T1003.001",
+    "copilot_confidence": 0.58,
+    "flags": [],
+    "needs_human": true
+  },
+  {
+    "alert_ref": "splunk:TDL-015",
+    "stack": "splunk",
+    "stack_techniques": [
+      "T1070.001"
+    ],
+    "copilot_severity": "high",
+    "copilot_technique": "T1070.001",
+    "copilot_confidence": 0.58,
+    "flags": [],
+    "needs_human": true
+  },
+  {
+    "alert_ref": "splunk:TDL-015",
+    "stack": "splunk",
+    "stack_techniques": [
+      "T1070.001"
+    ],
+    "copilot_severity": "high",
+    "copilot_technique": "T1070.001",
+    "copilot_confidence": 0.58,
+    "flags": [],
+    "needs_human": true
+  },
+  {
+    "alert_ref": "splunk:TDL-017",
+    "stack": "splunk",
+    "stack_techniques": [
+      "T1071",
+      "T1105"
+    ],
+    "copilot_severity": "medium",
+    "copilot_technique": "T1078",
+    "copilot_confidence": 0.2,
+    "flags": [
+      "no_rule_matched"
+    ],
+    "needs_human": true
+  },
+  {
+    "alert_ref": "splunk:TDL-017",
+    "stack": "splunk",
+    "stack_techniques": [
+      "T1071",
+      "T1105"
+    ],
+    "copilot_severity": "medium",
+    "copilot_technique": "T1078",
+    "copilot_confidence": 0.2,
+    "flags": [
+      "no_rule_matched"
+    ],
+    "needs_human": true
+  },
+  {
+    "alert_ref": "splunk:TDL-018",
+    "stack": "splunk",
+    "stack_techniques": [
+      "T1048",
+      "T1041"
+    ],
+    "copilot_severity": "medium",
+    "copilot_technique": "T1078",
+    "copilot_confidence": 0.2,
+    "flags": [
+      "no_rule_matched"
+    ],
+    "needs_human": true
+  },
+  {
+    "alert_ref": "splunk:TDL-025",
+    "stack": "splunk",
+    "stack_techniques": [
+      "T1071.004",
+      "T1218"
+    ],
+    "copilot_severity": "medium",
+    "copilot_technique": "T1078",
+    "copilot_confidence": 0.2,
+    "flags": [
+      "no_rule_matched"
+    ],
+    "needs_human": true
+  },
+  {
+    "alert_ref": "sentinel:sec-1102-security-log-cleared",
+    "stack": "sentinel",
+    "stack_techniques": [
+      "T1070",
+      "T1070.001"
+    ],
+    "copilot_severity": "high",
+    "copilot_technique": "T1070.001",
+    "copilot_confidence": 0.66,
+    "flags": [],
+    "needs_human": true
+  },
+  {
+    "alert_ref": "sentinel:sec-4625-brute-force",
+    "stack": "sentinel",
+    "stack_techniques": [
+      "T1110",
+      "T1110.001"
+    ],
+    "copilot_severity": "high",
+    "copilot_technique": "T1110.001",
+    "copilot_confidence": 0.66,
+    "flags": [],
+    "needs_human": true
+  },
+  {
+    "alert_ref": "sentinel:sec-4648-explicit-credentials-lateral",
+    "stack": "sentinel",
+    "stack_techniques": [
+      "T1021",
+      "T1021.002",
+      "T1078.002"
+    ],
+    "copilot_severity": "medium",
+    "copilot_technique": "T1078",
+    "copilot_confidence": 0.2,
+    "flags": [
+      "no_rule_matched"
+    ],
+    "needs_human": true
+  },
+  {
+    "alert_ref": "sentinel:sec-4688-encoded-powershell",
+    "stack": "sentinel",
+    "stack_techniques": [
+      "T1059.001",
+      "T1027"
+    ],
+    "copilot_severity": "medium",
+    "copilot_technique": "T1078",
+    "copilot_confidence": 0.2,
+    "flags": [
+      "no_rule_matched"
+    ],
+    "needs_human": true
+  },
+  {
+    "alert_ref": "sentinel:sec-4698-scheduled-task-created",
+    "stack": "sentinel",
+    "stack_techniques": [
+      "T1053",
+      "T1053.005"
+    ],
+    "copilot_severity": "medium",
+    "copilot_technique": "T1053.005",
+    "copilot_confidence": 0.66,
+    "flags": [],
+    "needs_human": true
+  },
+  {
+    "alert_ref": "sentinel:sec-4719-audit-policy-changed",
+    "stack": "sentinel",
+    "stack_techniques": [
+      "T1562",
+      "T1562.002"
+    ],
+    "copilot_severity": "medium",
+    "copilot_technique": "T1078",
+    "copilot_confidence": 0.2,
+    "flags": [
+      "no_rule_matched"
+    ],
+    "needs_human": true
+  },
+  {
+    "alert_ref": "sentinel:sec-4720-local-account-created",
+    "stack": "sentinel",
+    "stack_techniques": [
+      "T1136",
+      "T1136.001"
+    ],
+    "copilot_severity": "high",
+    "copilot_technique": "T1136.001",
+    "copilot_confidence": 0.58,
+    "flags": [],
+    "needs_human": true
+  },
+  {
+    "alert_ref": "sentinel:sec-4720-local-account-created",
+    "stack": "sentinel",
+    "stack_techniques": [
+      "T1136",
+      "T1136.001"
+    ],
+    "copilot_severity": "high",
+    "copilot_technique": "T1136.001",
+    "copilot_confidence": 0.58,
+    "flags": [],
+    "needs_human": true
+  },
+  {
+    "alert_ref": "sentinel:sec-4776-ntlm-password-spray",
+    "stack": "sentinel",
+    "stack_techniques": [
+      "T1110",
+      "T1110.003"
+    ],
+    "copilot_severity": "high",
+    "copilot_technique": "T1110.003",
+    "copilot_confidence": 0.58,
+    "flags": [],
+    "needs_human": true
+  }
+]

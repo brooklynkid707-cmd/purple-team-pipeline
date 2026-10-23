@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Purple Team Exercise Report</title>
+<style>
+  :root { --bg:#0b1120; --panel:#111c33; --ink:#e2e8f0; --muted:#94a3b8; --line:#1e293b; --accent:#38bdf8; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:15px/1.6 system-ui,Segoe UI,Arial,sans-serif; }
+  .wrap { max-width:1040px; margin:0 auto; padding:32px 16px 64px; }
+  h1 { font-size:28px; margin:0 0 4px; }
+  h2 { font-size:19px; margin:34px 0 12px; border-bottom:1px solid var(--line); padding-bottom:6px; }
+  .meta { color:var(--muted); font-size:13.5px; }
+  .note { background:var(--panel); border-left:3px solid var(--accent); padding:10px 14px; border-radius:6px; margin:16px 0; color:var(--muted); font-size:13.5px; }
+  .cards { display:flex; flex-wrap:wrap; gap:12px; margin:18px 0; }
+  .card { flex:1 1 150px; background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:16px; }
+  .card .v { font-size:26px; font-weight:700; }
+  .card .l { color:var(--muted); font-size:12.5px; margin-top:2px; }
+  table { width:100%; border-collapse:collapse; margin:10px 0; font-size:13.5px; }
+  th,td { text-align:left; padding:7px 9px; border-bottom:1px solid var(--line); vertical-align:top; }
+  th { color:var(--muted); font-weight:600; }
+  code { background:#0b1120; padding:1px 5px; border-radius:4px; color:#7dd3fc; font-size:12.5px; }
+  .badge { color:#fff; padding:2px 8px; border-radius:999px; font-size:11.5px; font-weight:700; }
+  .meter { display:inline-block; width:120px; height:9px; background:#0b1120; border-radius:5px; overflow:hidden; margin-right:8px; vertical-align:middle; }
+  .meter>div { height:100%; background:linear-gradient(90deg,#f9a825,#2e7d32); }
+  .svgwrap { background:#0f172a; border:1px solid var(--line); border-radius:10px; padding:8px; overflow-x:auto; }
+  .foot { color:var(--muted); font-size:13px; margin-top:40px; border-top:1px solid var(--line); padding-top:14px; }
+</style></head>
+<body><div class="wrap">
+  <h1>Purple Team Exercise Report</h1>
+  <div class="meta">Purple-team emulation - Group A - Ransomware Affiliate (healthcare/finance) &middot;
+    profile <code>ransomware-affiliate</code> &middot;
+    Regional Hospital - clinical and corporate IT (lab) &middot;
+    2026-10-23 18:20 UTC</div>
+  <div class="note">Authorized emulation on synthetic telemetry. No exploit code or payloads; every technique
+    is represented by the telemetry a defender would expect to observe. Stacks run:
+    mini-SIEM, Splunk, Sentinel.</div>
+
+  <div class="cards">
+    <div class="card"><div class="v" style="color:#38bdf8">43.3%</div><div class="l">coverage</div></div>
+    <div class="card"><div class="v" style="color:#2e7d32">13/30</div><div class="l">techniques detected</div></div>
+    <div class="card"><div class="v" style="color:#facc15">5s</div><div class="l">mean MTTD</div></div>
+    <div class="card"><div class="v" style="color:#a78bfa">3</div><div class="l">caught by all 3</div></div>
+    <div class="card"><div class="v" style="color:#f87171">6</div><div class="l">false positives</div></div>
+  </div>
+
+  <h2>Coverage by detection stack</h2>
+  <table><thead><tr><th>Stack</th><th>Detected</th><th>Coverage</th><th>Mean MTTD</th></tr></thead>
+  <tbody><tr><td>mini-SIEM</td><td>7/30</td><td>23.3%</td><td>24s</td></tr><tr><td>Splunk</td><td>10/30</td><td>33.3%</td><td>6s</td></tr><tr><td>Sentinel</td><td>6/30</td><td>20.0%</td><td>0s</td></tr>
+    <tr><td><b>Combined</b></td><td><b>13/30</b></td>
+    <td><b>43.3%</b></td><td><b>5s</b></td></tr></tbody></table>
+
+  <h2>Kill-chain timeline</h2>
+  <div class="svgwrap"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 1010" font-family="system-ui,Segoe UI,Arial,sans-serif" font-size="13">
+<rect width="980" height="1010" fill="#0f172a"/>
+<text x="20" y="34" fill="#e2e8f0" font-size="19" font-weight="700">Kill chain &#183; emulated techniques vs live detection</text>
+<rect x="20" y="46" width="12" height="12" rx="2" fill="#2e7d32"/>
+<text x="38" y="56" fill="#94a3b8">detected (2+ stacks)</text>
+<rect x="220" y="46" width="12" height="12" rx="2" fill="#f9a825"/>
+<text x="238" y="56" fill="#94a3b8">partial (1 stack)</text>
+<rect x="393" y="46" width="12" height="12" rx="2" fill="#c62828"/>
+<text x="411" y="56" fill="#94a3b8">missed</text>
+<line x1="230" y1="85" x2="750" y2="85" stroke="#1e293b" stroke-width="1"/>
+<text x="18" y="89" fill="#cbd5e1">S01 T1566.001 Spearphishing Attac…</text>
+<text x="224" y="89" fill="#64748b" text-anchor="end" font-size="11">initial-access</text>
+<circle cx="239" cy="85" r="7" fill="#c62828" stroke="#0f172a" stroke-width="2"/>
+<text x="760" y="89" fill="#c62828" font-size="11">MISSED</text>
+<line x1="230" y1="115" x2="750" y2="115" stroke="#1e293b" stroke-width="1"/>
+<text x="18" y="119" fill="#cbd5e1">S02 T1133 External Remote Services</text>
+<text x="224" y="119" fill="#64748b" text-anchor="end" font-size="11">initial-access</text>
+<circle cx="256" cy="115" r="7" fill="#c62828" stroke="#0f172a" stroke-width="2"/>
+<text x="760" y="119" fill="#c62828" font-size="11">MISSED</text>
+<line x1="230" y1="145" x2="750" y2="145" stroke="#1e293b" stroke-width="1"/>
+<text x="18" y="149" fill="#cbd5e1">S03 T1078 Valid Accounts</text>
+<text x="224" y="149" fill="#64748b" text-anchor="end" font-size="11">initial-access</text>
+<circle cx="273" cy="145" r="7" fill="#2e7d32" stroke="#0f172a" stroke-width="2"/>
+<text x="760" y="149" fill="#2e7d32" font-size="11">DETECTED &#183; mini-SIEM, Sentinel &#183; MTTD 0s</text>
+<line x1="230" y1="175" x2="750" y2="175" stroke="#1e293b" stroke-width="1"/>
+<text x="18" y="179" fill="#cbd5e1">S04 T1059.001 PowerShell</text>
+<text x="224" y="179" fill="#64748b" text-anchor="end" font-size="11">execution</text>
+<circle cx="291" cy="175" r="7" fill="#2e7d32" stroke="#0f172a" stroke-width="2"/>
+<text x="760" y="179" fill="#2e7d32" font-size="11">DETECTED &#183; mini-SIEM, Sentinel, Splunk &#183; MTTD 0s</text>
+<line x1="230" y1="205" x2="750" y2="205" stroke="#1e293b" stroke-width="1"/>
+<text x="18" y="209" fill="#cbd5e1">S05 T1569.002 System Services: Se…</text>
+<text x="224" y="209" fill="#64748b" text-anchor="end" font-size="11">execution</text>
+<circle cx="308" cy="205" r="7" fill="#c62828" stroke="#0f172a" stroke-width="2"/>
+<text x="760" y="209" fill="#c62828" font-size="11">MISSED</text>
+<line x1="230" y1="235" x2="750" y2="235" stroke="#1e293b" stroke-width="1"/>
+<text x="18" y="239" fill="#cbd5e1">S06 T1053.005 Scheduled Task</text>
+<text x="224" y="239" fill="#64748b" text-anchor="end" font-size="11">persistence</text>
+<circle cx="325" cy="235" r="7" fill="#2e7d32" stroke="#0f172a" stroke-width="2"/>
+<text x="760" y="239" fill="#2e7d32" font-size="11">DETECTED &#183; Sentinel, Splunk &#183; MTTD 0s</text>
+<line x1="230" y1="265" x2="750" y2="265" stroke="#1e293b" stroke-width="1"/>
+<text x="18" y="269" fill="#cbd5e1">S07 T1543.003 Create or Modify Sy…</text>
+<text x="224" y="269" fill="#64748b" text-anchor="end" font-size="11">persistence</text>
+<circle cx="343" cy="265" r="7" fill="#f9a825" stroke="#0f172a" stroke-width="2"/>
+<text x="760" y="269" fill="#f9a825" font-size="11">PARTIAL &#183; mini-SIEM &#183; MTTD 0s</text>
+<line x1="230" y1="295" x2="750" y2="295" stroke="#1e293b" stroke-width="1"/>
+<text x="18" y="299" fill="#cbd5e1">S08 T1548.002 Abuse Elevation Con…</text>
+<text x="224" y="299" fill="#64748b" text-anchor="end" font-size="11">privilege-escalation</text>
+<circle cx="360" cy="295" r="7" fill="#c62828" stroke="#0f172a" stroke-width="2"/>
+<text x="760" y="299" fill="#c62828" font-size="11">MISSED</text>
+<line x1="230" y1="325" x2="750" y2="325" stroke="#1e293b" stroke-width="1"/>
+<text x="18" y="329" fill="#cbd5e1">S09 T1134 Access Token Manipulati…</text>
+<text x="224" y="329" fill="#64748b" text-anchor="end" font-size="11">privilege-escalation</text>
+<circle cx="377" cy="325" r="7" fill="#c62828" stroke="#0f172a" stroke-width="2"/>
+<text x="760" y="329" fill="#c62828" font-size="11">MISSED</text>
+<line x1="230" y1="355" x2="750" y2="355" stroke="#1e293b" stroke-width="1"/>
+<text x="18" y="359" fill="#cbd5e1">S10 T1562.001 Impair Defenses: Di…</text>
+<text x="224" y="359" fill="#64748b" text-anchor="end" font-size="11">defense-evasion</text>
+<circle cx="395" cy="355" r="7" fill="#f9a825" stroke="#0f172a" stroke-width="2"/>
+<text x="760" y="359" fill="#f9a825" font-size="11">PARTIAL &#183; Sentinel &#183; MTTD 0s</text>
+<line x1="230" y1="385" x2="750" y2="385" stroke="#1e293b" stroke-width="1"/>
+<text x="18" y="389" fill="#cbd5e1">S11 T1070.001 Indicator Removal: …</text>
+<text x="224" y="389" fill="#64748b" text-anchor="end" font-size="11">defense-evasion</text>
+<circle cx="412" cy="385" r="7" fill="#2e7d32" stroke="#0f172a" stroke-width="2"/>
+<text x="760" y="389" fill="#2e7d32" font-size="11">DETECTED &#183; mini-SIEM, Sentinel, Splunk &#183; MTTD 0s</text>
+<line x1="230" y1="415" x2="750" y2="415" stroke="#1e293b" stroke-width="1"/>
+<text x="18" y="419" fill="#cbd5e1">S12 T1003.001 OS Credential Dumpi…</text>
+<text x="224" y="419" fill="#64748b" text-anchor="end" font-size="11">credential-access</text>
+<circle cx="429" cy="415" r="7" fill="#2e7d32" stroke="#0f172a" stroke-width="2"/>
+<text x="760" y="419" fill="#2e7d32" font-size="11">DETECTED &#183; mini-SIEM, Splunk &#183; MTTD 0s</text>
+<line x1="230" y1="445" x2="750" y2="445" stroke="#1e293b" stroke-width="1"/>
+<text x="18" y="449" fill="#cbd5e1">S13 T1558.003 Steal or Forge Kerb…</text>
+<text x="224" y="449" fill="#64748b" text-anchor="end" font-size="11">credential-access</text>
+<circle cx="447" cy="445" r="7" fill="#c62828" stroke="#0f172a" stroke-width="2"/>
+<text x="760" y="449" fill="#c62828" font-size="11">MISSED</text>
+<line x1="230" y1="475" x2="750" y2="475" stroke="#1e293b" stroke-width="1"/>
+<text x="18" y="479" fill="#cbd5e1">S14 T1110.003 Brute Force: Passwo…</text>
+<text x="224" y="479" fill="#64748b" text-anchor="end" font-size="11">credential-access</text>
+<circle cx="464" cy="475" r="7" fill="#2e7d32" stroke="#0f172a" stroke-width="2"/>
+<text x="760" y="479" fill="#2e7d32" font-size="11">DETECTED &#183; mini-SIEM, Sentinel, Splunk &#183; MTTD 0s</text>
+<line x1="230" y1="505" x2="750" y2="505" stroke="#1e293b" stroke-width="1"/>
+<text x="18" y="509" fill="#cbd5e1">S15 T1087.002 Account Discovery: …</text>
+<text x="224" y="509" fill="#64748b" text-anchor="end" font-size="11">discovery</text>
+<circle cx="481" cy="505" r="7" fill="#c62828" stroke="#0f172a" stroke-width="2"/>
+<text x="760" y="509" fill="#c62828" font-size="11">MISSED</text>
+<line x1="230" y1="535" x2="750" y2="535" stroke="#1e293b" stroke-width="1"/>
+<text x="18" y="539" fill="#cbd5e1">S16 T1018 Remote System Discovery</text>
+<text x="224" y="539" fill="#64748b" text-anchor="end" font-size="11">discovery</text>
+<circle cx="499" cy="535" r="7" fill="#c62828" stroke="#0f172a" stroke-width="2"/>
+<text x="760" y="539" fill="#c62828" font-size="11">MISSED</text>
+<line x1="230" y1="565" x2="750" y2="565" stroke="#1e293b" stroke-width="1"/>
+<text x="18" y="569" fill="#cbd5e1">S17 T1482 Domain Trust Discovery</text>
+<text x="224" y="569" fill="#64748b" text-anchor="end" font-size="11">discovery</text>
+<circle cx="516" cy="565" r="7" fill="#c62828" stroke="#0f172a" stroke-width="2"/>
+<text x="760" y="569" fill="#c62828" font-size="11">MISSED</text>
+<line x1="230" y1="595" x2="750" y2="595" stroke="#1e293b" stroke-width="1"/>
+<text x="18" y="599" fill="#cbd5e1">S18 T1021.001 Remote Services: RDP</text>
+<text x="224" y="599" fill="#64748b" text-anchor="end" font-size="11">lateral-movement</text>
+<circle cx="533" cy="595" r="7" fill="#f9a825" stroke="#0f172a" stroke-width="2"/>
+<text x="760" y="599" fill="#f9a825" font-size="11">PARTIAL &#183; Splunk &#183; MTTD 0s</text>
+<line x1="230" y1="625" x2="750" y2="625" stroke="#1e293b" stroke-width="1"/>
+<text x="18" y="629" fill="#cbd5e1">S19 T1021.002 Remote Services: SM…</text>
+<text x="224" y="629" fill="#64748b" text-anchor="end" font-size="11">lateral-movement</text>
+<circle cx="551" cy="625" r="7" fill="#f9a825" stroke="#0f172a" stroke-width="2"/>
+<text x="760" y="629" fill="#f9a825" font-size="11">PARTIAL &#183; Splunk &#183; MTTD 0s</text>
+<line x1="230" y1="655" x2="750" y2="655" stroke="#1e293b" stroke-width="1"/>
+<text x="18" y="659" fill="#cbd5e1">S20 T1550.002 Use Alternate Authe…</text>
+<text x="224" y="659" fill="#64748b" text-anchor="end" font-size="11">lateral-movement</text>
+<circle cx="568" cy="655" r="7" fill="#c62828" stroke="#0f172a" stroke-width="2"/>
+<text x="760" y="659" fill="#c62828" font-size="11">MISSED</text>
+<line x1="230" y1="685" x2="750" y2="685" stroke="#1e293b" stroke-width="1"/>
+<text x="18" y="689" fill="#cbd5e1">S21 T1570 Lateral Tool Transfer</text>
+<text x="224" y="689" fill="#64748b" text-anchor="end" font-size="11">lateral-movement</text>
+<circle cx="585" cy="685" r="7" fill="#c62828" stroke="#0f172a" stroke-width="2"/>
+<text x="760" y="689" fill="#c62828" font-size="11">MISSED</text>
+<line x1="230" y1="715" x2="750" y2="715" stroke="#1e293b" stroke-width="1"/>
+<text x="18" y="719" fill="#cbd5e1">S22 T1560.001 Archive Collected D…</text>
+<text x="224" y="719" fill="#64748b" text-anchor="end" font-size="11">collection</text>
+<circle cx="603" cy="715" r="7" fill="#c62828" stroke="#0f172a" stroke-width="2"/>
+<text x="760" y="719" fill="#c62828" font-size="11">MISSED</text>
+<line x1="230" y1="745" x2="750" y2="745" stroke="#1e293b" stroke-width="1"/>
+<text x="18" y="749" fill="#cbd5e1">S23 T1005 Data from Local System</text>
+<text x="224" y="749" fill="#64748b" text-anchor="end" font-size="11">collection</text>
+<circle cx="620" cy="745" r="7" fill="#c62828" stroke="#0f172a" stroke-width="2"/>
+<text x="760" y="749" fill="#c62828" font-size="11">MISSED</text>
+<line x1="230" y1="775" x2="750" y2="775" stroke="#1e293b" stroke-width="1"/>
+<text x="18" y="779" fill="#cbd5e1">S24 T1071.001 Application Layer P…</text>
+<text x="224" y="779" fill="#64748b" text-anchor="end" font-size="11">command-and-control</text>
+<circle cx="637" cy="775" r="7" fill="#2e7d32" stroke="#0f172a" stroke-width="2"/>
+<text x="760" y="779" fill="#2e7d32" font-size="11">DETECTED &#183; mini-SIEM, Splunk &#183; MTTD 60s</text>
+<line x1="230" y1="805" x2="750" y2="805" stroke="#1e293b" stroke-width="1"/>
+<text x="18" y="809" fill="#cbd5e1">S25 T1105 Ingress Tool Transfer</text>
+<text x="224" y="809" fill="#64748b" text-anchor="end" font-size="11">command-and-control</text>
+<circle cx="655" cy="805" r="7" fill="#f9a825" stroke="#0f172a" stroke-width="2"/>
+<text x="760" y="809" fill="#f9a825" font-size="11">PARTIAL &#183; Splunk &#183; MTTD 0s</text>
+<line x1="230" y1="835" x2="750" y2="835" stroke="#1e293b" stroke-width="1"/>
+<text x="18" y="839" fill="#cbd5e1">S26 T1567.002 Exfiltration to Clo…</text>
+<text x="224" y="839" fill="#64748b" text-anchor="end" font-size="11">exfiltration</text>
+<circle cx="672" cy="835" r="7" fill="#c62828" stroke="#0f172a" stroke-width="2"/>
+<text x="760" y="839" fill="#c62828" font-size="11">MISSED</text>
+<line x1="230" y1="865" x2="750" y2="865" stroke="#1e293b" stroke-width="1"/>
+<text x="18" y="869" fill="#cbd5e1">S27 T1041 Exfiltration Over C2 Ch…</text>
+<text x="224" y="869" fill="#64748b" text-anchor="end" font-size="11">exfiltration</text>
+<circle cx="689" cy="865" r="7" fill="#f9a825" stroke="#0f172a" stroke-width="2"/>
+<text x="760" y="869" fill="#f9a825" font-size="11">PARTIAL &#183; Splunk &#183; MTTD 0s</text>
+<line x1="230" y1="895" x2="750" y2="895" stroke="#1e293b" stroke-width="1"/>
+<text x="18" y="899" fill="#cbd5e1">S28 T1489 Service Stop</text>
+<text x="224" y="899" fill="#64748b" text-anchor="end" font-size="11">impact</text>
+<circle cx="707" cy="895" r="7" fill="#c62828" stroke="#0f172a" stroke-width="2"/>
+<text x="760" y="899" fill="#c62828" font-size="11">MISSED</text>
+<line x1="230" y1="925" x2="750" y2="925" stroke="#1e293b" stroke-width="1"/>
+<text x="18" y="929" fill="#cbd5e1">S29 T1490 Inhibit System Recovery</text>
+<text x="224" y="929" fill="#64748b" text-anchor="end" font-size="11">impact</text>
+<circle cx="724" cy="925" r="7" fill="#c62828" stroke="#0f172a" stroke-width="2"/>
+<text x="760" y="929" fill="#c62828" font-size="11">MISSED</text>
+<line x1="230" y1="955" x2="750" y2="955" stroke="#1e293b" stroke-width="1"/>
+<text x="18" y="959" fill="#cbd5e1">S30 T1486 Data Encrypted for Impa…</text>
+<text x="224" y="959" fill="#64748b" text-anchor="end" font-size="11">impact</text>
+<circle cx="741" cy="955" r="7" fill="#c62828" stroke="#0f172a" stroke-width="2"/>
+<text x="760" y="959" fill="#c62828" font-size="11">MISSED</text>
+</svg></div>
+
+  <h2>Per-step detection</h2>
+  <table><thead><tr><th>Step</th><th>Tactic</th><th>Technique</th><th>Status</th><th>Stacks</th><th>MTTD</th></tr></thead>
+  <tbody><tr><td>S01</td><td>initial-access</td><td><code>T1566.001</code> Spearphishing Attachment</td><td><span class="badge" style="background:#c62828">MISSED</span></td><td>&mdash;</td><td>&mdash;</td></tr><tr><td>S02</td><td>initial-access</td><td><code>T1133</code> External Remote Services</td><td><span class="badge" style="background:#c62828">MISSED</span></td><td>&mdash;</td><td>&mdash;</td></tr><tr><td>S03</td><td>initial-access</td><td><code>T1078</code> Valid Accounts</td><td><span class="badge" style="background:#2e7d32">DETECTED</span></td><td>mini-SIEM, Sentinel</td><td>0s</td></tr><tr><td>S04</td><td>execution</td><td><code>T1059.001</code> PowerShell</td><td><span class="badge" style="background:#2e7d32">DETECTED</span></td><td>mini-SIEM, Sentinel, Splunk</td><td>0s</td></tr><tr><td>S05</td><td>execution</td><td><code>T1569.002</code> System Services: Service Execution</td><td><span class="badge" style="background:#c62828">MISSED</span></td><td>&mdash;</td><td>&mdash;</td></tr><tr><td>S06</td><td>persistence</td><td><code>T1053.005</code> Scheduled Task</td><td><span class="badge" style="background:#2e7d32">DETECTED</span></td><td>Sentinel, Splunk</td><td>0s</td></tr><tr><td>S07</td><td>persistence</td><td><code>T1543.003</code> Create or Modify System Process: Windows Service</td><td><span class="badge" style="background:#f9a825">PARTIAL</span></td><td>mini-SIEM</td><td>0s</td></tr><tr><td>S08</td><td>privilege-escalation</td><td><code>T1548.002</code> Abuse Elevation Control: Bypass UAC</td><td><span class="badge" style="background:#c62828">MISSED</span></td><td>&mdash;</td><td>&mdash;</td></tr><tr><td>S09</td><td>privilege-escalation</td><td><code>T1134</code> Access Token Manipulation</td><td><span class="badge" style="background:#c62828">MISSED</span></td><td>&mdash;</td><td>&mdash;</td></tr><tr><td>S10</td><td>defense-evasion</td><td><code>T1562.001</code> Impair Defenses: Disable or Modify Tools</td><td><span class="badge" style="background:#f9a825">PARTIAL</span></td><td>Sentinel</td><td>0s</td></tr><tr><td>S11</td><td>defense-evasion</td><td><code>T1070.001</code> Indicator Removal: Clear Windows Event Logs</td><td><span class="badge" style="background:#2e7d32">DETECTED</span></td><td>mini-SIEM, Sentinel, Splunk</td><td>0s</td></tr><tr><td>S12</td><td>credential-access</td><td><code>T1003.001</code> OS Credential Dumping: LSASS Memory</td><td><span class="badge" style="background:#2e7d32">DETECTED</span></td><td>mini-SIEM, Splunk</td><td>0s</td></tr><tr><td>S13</td><td>credential-access</td><td><code>T1558.003</code> Steal or Forge Kerberos Tickets: Kerberoasting</td><td><span class="badge" style="background:#c62828">MISSED</span></td><td>&mdash;</td><td>&mdash;</td></tr><tr><td>S14</td><td>credential-access</td><td><code>T1110.003</code> Brute Force: Password Spraying</td><td><span class="badge" style="background:#2e7d32">DETECTED</span></td><td>mini-SIEM, Sentinel, Splunk</td><td>0s</td></tr><tr><td>S15</td><td>discovery</td><td><code>T1087.002</code> Account Discovery: Domain Account</td><td><span class="badge" style="background:#c62828">MISSED</span></td><td>&mdash;</td><td>&mdash;</td></tr><tr><td>S16</td><td>discovery</td><td><code>T1018</code> Remote System Discovery</td><td><span class="badge" style="background:#c62828">MISSED</span></td><td>&mdash;</td><td>&mdash;</td></tr><tr><td>S17</td><td>discovery</td><td><code>T1482</code> Domain Trust Discovery</td><td><span class="badge" style="background:#c62828">MISSED</span></td><td>&mdash;</td><td>&mdash;</td></tr><tr><td>S18</td><td>lateral-movement</td><td><code>T1021.001</code> Remote Services: RDP</td><td><span class="badge" style="background:#f9a825">PARTIAL</span></td><td>Splunk</td><td>0s</td></tr><tr><td>S19</td><td>lateral-movement</td><td><code>T1021.002</code> Remote Services: SMB/Windows Admin Shares</td><td><span class="badge" style="background:#f9a825">PARTIAL</span></td><td>Splunk</td><td>0s</td></tr><tr><td>S20</td><td>lateral-movement</td><td><code>T1550.002</code> Use Alternate Authentication Material: Pass the Hash</td><td><span class="badge" style="background:#c62828">MISSED</span></td><td>&mdash;</td><td>&mdash;</td></tr><tr><td>S21</td><td>lateral-movement</td><td><code>T1570</code> Lateral Tool Transfer</td><td><span class="badge" style="background:#c62828">MISSED</span></td><td>&mdash;</td><td>&mdash;</td></tr><tr><td>S22</td><td>collection</td><td><code>T1560.001</code> Archive Collected Data: Archive via Utility</td><td><span class="badge" style="background:#c62828">MISSED</span></td><td>&mdash;</td><td>&mdash;</td></tr><tr><td>S23</td><td>collection</td><td><code>T1005</code> Data from Local System</td><td><span class="badge" style="background:#c62828">MISSED</span></td><td>&mdash;</td><td>&mdash;</td></tr><tr><td>S24</td><td>command-and-control</td><td><code>T1071.001</code> Application Layer Protocol: Web Protocols</td><td><span class="badge" style="background:#2e7d32">DETECTED</span></td><td>mini-SIEM, Splunk</td><td>1m 00s</td></tr><tr><td>S25</td><td>command-and-control</td><td><code>T1105</code> Ingress Tool Transfer</td><td><span class="badge" style="background:#f9a825">PARTIAL</span></td><td>Splunk</td><td>0s</td></tr><tr><td>S26</td><td>exfiltration</td><td><code>T1567.002</code> Exfiltration to Cloud Storage</td><td><span class="badge" style="background:#c62828">MISSED</span></td><td>&mdash;</td><td>&mdash;</td></tr><tr><td>S27</td><td>exfiltration</td><td><code>T1041</code> Exfiltration Over C2 Channel</td><td><span class="badge" style="background:#f9a825">PARTIAL</span></td><td>Splunk</td><td>0s</td></tr><tr><td>S28</td><td>impact</td><td><code>T1489</code> Service Stop</td><td><span class="badge" style="background:#c62828">MISSED</span></td><td>&mdash;</td><td>&mdash;</td></tr><tr><td>S29</td><td>impact</td><td><code>T1490</code> Inhibit System Recovery</td><td><span class="badge" style="background:#c62828">MISSED</span></td><td>&mdash;</td><td>&mdash;</td></tr><tr><td>S30</td><td>impact</td><td><code>T1486</code> Data Encrypted for Impact</td><td><span class="badge" style="background:#c62828">MISSED</span></td><td>&mdash;</td><td>&mdash;</td></tr></tbody></table>
+
+  <h2>Coverage by ATT&amp;CK tactic</h2>
+  <table><thead><tr><th>Tactic</th><th>Detected</th><th>Coverage</th></tr></thead>
+  <tbody><tr><td>initial-access</td><td>1/3</td><td><div class="meter"><div style="width:33.3%"></div></div>33.3%</td></tr><tr><td>execution</td><td>1/2</td><td><div class="meter"><div style="width:50.0%"></div></div>50.0%</td></tr><tr><td>persistence</td><td>2/2</td><td><div class="meter"><div style="width:100.0%"></div></div>100.0%</td></tr><tr><td>privilege-escalation</td><td>0/2</td><td><div class="meter"><div style="width:0.0%"></div></div>0.0%</td></tr><tr><td>defense-evasion</td><td>2/2</td><td><div class="meter"><div style="width:100.0%"></div></div>100.0%</td></tr><tr><td>credential-access</td><td>2/3</td><td><div class="meter"><div style="width:66.7%"></div></div>66.7%</td></tr><tr><td>discovery</td><td>0/3</td><td><div class="meter"><div style="width:0.0%"></div></div>0.0%</td></tr><tr><td>lateral-movement</td><td>2/4</td><td><div class="meter"><div style="width:50.0%"></div></div>50.0%</td></tr><tr><td>collection</td><td>0/2</td><td><div class="meter"><div style="width:0.0%"></div></div>0.0%</td></tr><tr><td>command-and-control</td><td>2/2</td><td><div class="meter"><div style="width:100.0%"></div></div>100.0%</td></tr><tr><td>exfiltration</td><td>1/2</td><td><div class="meter"><div style="width:50.0%"></div></div>50.0%</td></tr><tr><td>impact</td><td>0/3</td><td><div class="meter"><div style="width:0.0%"></div></div>0.0%</td></tr></tbody></table>
+
+  <h2>Gaps &amp; recommended detections</h2>
+  <table><thead><tr><th>Step</th><th>Technique</th><th>Recommended detection</th></tr></thead>
+  <tbody><tr><td>S01</td><td><code>T1566.001</code> Spearphishing Attachment</td><td>author a detection for T1566.001 (Spearphishing Attachment) over its expected telemetry</td></tr><tr><td>S02</td><td><code>T1133</code> External Remote Services</td><td>author a detection for T1133 (External Remote Services) over its expected telemetry</td></tr><tr><td>S05</td><td><code>T1569.002</code> System Services: Service Execution</td><td>service-install (7045) to a user-writable ImagePath</td></tr><tr><td>S08</td><td><code>T1548.002</code> Abuse Elevation Control: Bypass UAC</td><td>Sysmon 1 high-integrity child of a known auto-elevating LOLBin (fodhelper/eventvwr)</td></tr><tr><td>S09</td><td><code>T1134</code> Access Token Manipulation</td><td>Sysmon 1 high-integrity child of a known auto-elevating LOLBin (fodhelper/eventvwr)</td></tr><tr><td>S13</td><td><code>T1558.003</code> Steal or Forge Kerberos Tickets: Kerberoasting</td><td>4769 RC4 (0x17) TGS volume per account (Kerberoasting)</td></tr><tr><td>S15</td><td><code>T1087.002</code> Account Discovery: Domain Account</td><td>process-creation rule on net/dsquery/nltest with per-host rate baselining</td></tr><tr><td>S16</td><td><code>T1018</code> Remote System Discovery</td><td>process-creation rule on net/dsquery/nltest with per-host rate baselining</td></tr><tr><td>S17</td><td><code>T1482</code> Domain Trust Discovery</td><td>process-creation rule on net/dsquery/nltest with per-host rate baselining</td></tr><tr><td>S20</td><td><code>T1550.002</code> Use Alternate Authentication Material: Pass the Hash</td><td>4624 type-3 NTLM / 5140 share-access correlation and 4648 explicit-credential fan-out</td></tr><tr><td>S21</td><td><code>T1570</code> Lateral Tool Transfer</td><td>4624 type-3 NTLM / 5140 share-access correlation and 4648 explicit-credential fan-out</td></tr><tr><td>S22</td><td><code>T1560.001</code> Archive Collected Data: Archive via Utility</td><td>Sysmon 1 rule on rar/7z/wbadmin with staging-path heuristics</td></tr><tr><td>S23</td><td><code>T1005</code> Data from Local System</td><td>Sysmon 1 rule on rar/7z/wbadmin with staging-path heuristics</td></tr><tr><td>S26</td><td><code>T1567.002</code> Exfiltration to Cloud Storage</td><td>per-host outbound byte baseline (eventstats mean+3sigma) and CASB upload volume</td></tr><tr><td>S28</td><td><code>T1489</code> Service Stop</td><td>Sysmon 1 rule on vssadmin/wbadmin/bcdedit and service-stop bursts before mass writes</td></tr><tr><td>S29</td><td><code>T1490</code> Inhibit System Recovery</td><td>Sysmon 1 rule on vssadmin/wbadmin/bcdedit and service-stop bursts before mass writes</td></tr><tr><td>S30</td><td><code>T1486</code> Data Encrypted for Impact</td><td>Sysmon 1 rule on vssadmin/wbadmin/bcdedit and service-stop bursts before mass writes</td></tr></tbody></table>
+
+  <div class="foot">JP Scirica &mdash; CompTIA Security+ | linkedin.com/in/jp-scirica<br>
+  Generated by the Purple Team Pipeline across mini-SIEM, Splunk and Microsoft Sentinel detection content.</div>
+</div></body></html>

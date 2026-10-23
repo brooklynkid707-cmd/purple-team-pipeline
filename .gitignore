@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.venv/
+venv/
+.DS_Store
+
+# Cloned sibling repositories (resolved via PORTFOLIO_ROOT or cloned here)
+vendor/
+
+# Pipeline run outputs (the committed example under examples/ is kept)
+runs/
+*.db
+*.db-shm
+*.db-wal
+
+# Scratch
+_benign/
+
+# committed example keeps only the small artefacts, not the bulky telemetry
+examples/*/telemetry/

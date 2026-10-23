@@ -1,0 +1,9 @@
+# Purple Team Pipeline - runtime is standard library; these cover the sibling
+# repos it drives and the test runner. All preinstalled in this environment;
+# use: pip install --break-system-packages -r requirements.txt
+pyyaml>=6.0        # aep env files, sentinel rules, soctk case files, splunk conf
+flask>=3.0         # pulled in by siem-from-scratch (dashboard); not used at runtime here
+pytest>=8.0        # test suite
+numpy>=1.26        # ml-threat-detection
+pandas>=2.0        # ml-threat-detection
+scikit-learn>=1.4  # ml-threat-detection detectors

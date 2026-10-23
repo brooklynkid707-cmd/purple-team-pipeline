@@ -1,0 +1,564 @@
+{
+  "name": "Purple Team Pipeline - Purple-team emulation - Group A - Ransomware Affiliate (healthcare/finance)",
+  "versions": {
+    "attack": "14",
+    "navigator": "4.9.1",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "Emulated techniques scored by live detection: green=caught by 2+ stacks, amber=caught by one stack, red=missed.",
+  "sorting": 0,
+  "layout": {
+    "layout": "side",
+    "showName": true,
+    "showID": true
+  },
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1566.001",
+      "score": 0,
+      "color": "#c62828",
+      "comment": "S01 missed; caught by: none",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "status",
+          "value": "missed"
+        },
+        {
+          "name": "stacks",
+          "value": "none"
+        }
+      ]
+    },
+    {
+      "techniqueID": "T1133",
+      "score": 0,
+      "color": "#c62828",
+      "comment": "S02 missed; caught by: none",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "status",
+          "value": "missed"
+        },
+        {
+          "name": "stacks",
+          "value": "none"
+        }
+      ]
+    },
+    {
+      "techniqueID": "T1078",
+      "score": 100,
+      "color": "#2e7d32",
+      "comment": "S03 detected; caught by: minisiem, sentinel; MTTD 0s",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "status",
+          "value": "detected"
+        },
+        {
+          "name": "stacks",
+          "value": "minisiem, sentinel"
+        }
+      ]
+    },
+    {
+      "techniqueID": "T1059.001",
+      "score": 100,
+      "color": "#2e7d32",
+      "comment": "S04 detected; caught by: minisiem, sentinel, splunk; MTTD 0s",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "status",
+          "value": "detected"
+        },
+        {
+          "name": "stacks",
+          "value": "minisiem, sentinel, splunk"
+        }
+      ]
+    },
+    {
+      "techniqueID": "T1569.002",
+      "score": 0,
+      "color": "#c62828",
+      "comment": "S05 missed; caught by: none",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "status",
+          "value": "missed"
+        },
+        {
+          "name": "stacks",
+          "value": "none"
+        }
+      ]
+    },
+    {
+      "techniqueID": "T1053.005",
+      "score": 100,
+      "color": "#2e7d32",
+      "comment": "S06 detected; caught by: sentinel, splunk; MTTD 0s",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "status",
+          "value": "detected"
+        },
+        {
+          "name": "stacks",
+          "value": "sentinel, splunk"
+        }
+      ]
+    },
+    {
+      "techniqueID": "T1543.003",
+      "score": 50,
+      "color": "#f9a825",
+      "comment": "S07 partial; caught by: minisiem; MTTD 0s",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "status",
+          "value": "partial"
+        },
+        {
+          "name": "stacks",
+          "value": "minisiem"
+        }
+      ]
+    },
+    {
+      "techniqueID": "T1548.002",
+      "score": 0,
+      "color": "#c62828",
+      "comment": "S08 missed; caught by: none",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "status",
+          "value": "missed"
+        },
+        {
+          "name": "stacks",
+          "value": "none"
+        }
+      ]
+    },
+    {
+      "techniqueID": "T1134",
+      "score": 0,
+      "color": "#c62828",
+      "comment": "S09 missed; caught by: none",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "status",
+          "value": "missed"
+        },
+        {
+          "name": "stacks",
+          "value": "none"
+        }
+      ]
+    },
+    {
+      "techniqueID": "T1562.001",
+      "score": 50,
+      "color": "#f9a825",
+      "comment": "S10 partial; caught by: sentinel; MTTD 0s",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "status",
+          "value": "partial"
+        },
+        {
+          "name": "stacks",
+          "value": "sentinel"
+        }
+      ]
+    },
+    {
+      "techniqueID": "T1070.001",
+      "score": 100,
+      "color": "#2e7d32",
+      "comment": "S11 detected; caught by: minisiem, sentinel, splunk; MTTD 0s",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "status",
+          "value": "detected"
+        },
+        {
+          "name": "stacks",
+          "value": "minisiem, sentinel, splunk"
+        }
+      ]
+    },
+    {
+      "techniqueID": "T1003.001",
+      "score": 100,
+      "color": "#2e7d32",
+      "comment": "S12 detected; caught by: minisiem, splunk; MTTD 0s",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "status",
+          "value": "detected"
+        },
+        {
+          "name": "stacks",
+          "value": "minisiem, splunk"
+        }
+      ]
+    },
+    {
+      "techniqueID": "T1558.003",
+      "score": 0,
+      "color": "#c62828",
+      "comment": "S13 missed; caught by: none",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "status",
+          "value": "missed"
+        },
+        {
+          "name": "stacks",
+          "value": "none"
+        }
+      ]
+    },
+    {
+      "techniqueID": "T1110.003",
+      "score": 100,
+      "color": "#2e7d32",
+      "comment": "S14 detected; caught by: minisiem, sentinel, splunk; MTTD 0s",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "status",
+          "value": "detected"
+        },
+        {
+          "name": "stacks",
+          "value": "minisiem, sentinel, splunk"
+        }
+      ]
+    },
+    {
+      "techniqueID": "T1087.002",
+      "score": 0,
+      "color": "#c62828",
+      "comment": "S15 missed; caught by: none",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "status",
+          "value": "missed"
+        },
+        {
+          "name": "stacks",
+          "value": "none"
+        }
+      ]
+    },
+    {
+      "techniqueID": "T1018",
+      "score": 0,
+      "color": "#c62828",
+      "comment": "S16 missed; caught by: none",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "status",
+          "value": "missed"
+        },
+        {
+          "name": "stacks",
+          "value": "none"
+        }
+      ]
+    },
+    {
+      "techniqueID": "T1482",
+      "score": 0,
+      "color": "#c62828",
+      "comment": "S17 missed; caught by: none",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "status",
+          "value": "missed"
+        },
+        {
+          "name": "stacks",
+          "value": "none"
+        }
+      ]
+    },
+    {
+      "techniqueID": "T1021.001",
+      "score": 50,
+      "color": "#f9a825",
+      "comment": "S18 partial; caught by: splunk; MTTD 0s",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "status",
+          "value": "partial"
+        },
+        {
+          "name": "stacks",
+          "value": "splunk"
+        }
+      ]
+    },
+    {
+      "techniqueID": "T1021.002",
+      "score": 50,
+      "color": "#f9a825",
+      "comment": "S19 partial; caught by: splunk; MTTD 0s",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "status",
+          "value": "partial"
+        },
+        {
+          "name": "stacks",
+          "value": "splunk"
+        }
+      ]
+    },
+    {
+      "techniqueID": "T1550.002",
+      "score": 0,
+      "color": "#c62828",
+      "comment": "S20 missed; caught by: none",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "status",
+          "value": "missed"
+        },
+        {
+          "name": "stacks",
+          "value": "none"
+        }
+      ]
+    },
+    {
+      "techniqueID": "T1570",
+      "score": 0,
+      "color": "#c62828",
+      "comment": "S21 missed; caught by: none",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "status",
+          "value": "missed"
+        },
+        {
+          "name": "stacks",
+          "value": "none"
+        }
+      ]
+    },
+    {
+      "techniqueID": "T1560.001",
+      "score": 0,
+      "color": "#c62828",
+      "comment": "S22 missed; caught by: none",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "status",
+          "value": "missed"
+        },
+        {
+          "name": "stacks",
+          "value": "none"
+        }
+      ]
+    },
+    {
+      "techniqueID": "T1005",
+      "score": 0,
+      "color": "#c62828",
+      "comment": "S23 missed; caught by: none",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "status",
+          "value": "missed"
+        },
+        {
+          "name": "stacks",
+          "value": "none"
+        }
+      ]
+    },
+    {
+      "techniqueID": "T1071.001",
+      "score": 100,
+      "color": "#2e7d32",
+      "comment": "S24 detected; caught by: minisiem, splunk; MTTD 60s",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "status",
+          "value": "detected"
+        },
+        {
+          "name": "stacks",
+          "value": "minisiem, splunk"
+        }
+      ]
+    },
+    {
+      "techniqueID": "T1105",
+      "score": 50,
+      "color": "#f9a825",
+      "comment": "S25 partial; caught by: splunk; MTTD 0s",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "status",
+          "value": "partial"
+        },
+        {
+          "name": "stacks",
+          "value": "splunk"
+        }
+      ]
+    },
+    {
+      "techniqueID": "T1567.002",
+      "score": 0,
+      "color": "#c62828",
+      "comment": "S26 missed; caught by: none",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "status",
+          "value": "missed"
+        },
+        {
+          "name": "stacks",
+          "value": "none"
+        }
+      ]
+    },
+    {
+      "techniqueID": "T1041",
+      "score": 50,
+      "color": "#f9a825",
+      "comment": "S27 partial; caught by: splunk; MTTD 0s",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "status",
+          "value": "partial"
+        },
+        {
+          "name": "stacks",
+          "value": "splunk"
+        }
+      ]
+    },
+    {
+      "techniqueID": "T1489",
+      "score": 0,
+      "color": "#c62828",
+      "comment": "S28 missed; caught by: none",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "status",
+          "value": "missed"
+        },
+        {
+          "name": "stacks",
+          "value": "none"
+        }
+      ]
+    },
+    {
+      "techniqueID": "T1490",
+      "score": 0,
+      "color": "#c62828",
+      "comment": "S29 missed; caught by: none",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "status",
+          "value": "missed"
+        },
+        {
+          "name": "stacks",
+          "value": "none"
+        }
+      ]
+    },
+    {
+      "techniqueID": "T1486",
+      "score": 0,
+      "color": "#c62828",
+      "comment": "S30 missed; caught by: none",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "status",
+          "value": "missed"
+        },
+        {
+          "name": "stacks",
+          "value": "none"
+        }
+      ]
+    }
+  ],
+  "gradient": {
+    "colors": [
+      "#c62828",
+      "#f9a825",
+      "#2e7d32"
+    ],
+    "minValue": 0,
+    "maxValue": 100
+  },
+  "legendItems": [
+    {
+      "label": "detected (2+ stacks)",
+      "color": "#2e7d32"
+    },
+    {
+      "label": "partial (1 stack)",
+      "color": "#f9a825"
+    },
+    {
+      "label": "missed",
+      "color": "#c62828"
+    }
+  ],
+  "metadata": [
+    {
+      "name": "coverage_pct",
+      "value": "43.3"
+    },
+    {
+      "name": "mean_mttd_seconds",
+      "value": "4.6"
+    }
+  ],
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#dddddd"
+}

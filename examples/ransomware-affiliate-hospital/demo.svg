@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520"
+     font-family="system-ui,Segoe UI,Arial,sans-serif">
+  <rect width="900" height="520" fill="#0b1120"/>
+  <text x="60" y="52" fill="#e2e8f0" font-size="24" font-weight="800">Purple Team Pipeline</text>
+  <text x="60" y="76" fill="#94a3b8" font-size="14">one command: ransomware-affiliate vs Regional Hospital - clinical and corporate IT (lab)  -  plan to incident report across 7 repos</text>
+  
+  <g transform="translate(60 120)">
+    <rect width="780" height="46" rx="8" fill="#111c33" stroke="#1e293b"/>
+    <rect width="780" height="46" rx="8" fill="#14532d" opacity="0">
+      <animate attributeName="opacity" values="0;1;1;0.25" keyTimes="0;0.12;0.8;1"
+               dur="9.600000000000001s" begin="0.0s" repeatCount="indefinite"/>
+    </rect>
+    <circle cx="26" cy="23" r="9" fill="#334155">
+      <animate attributeName="fill" values="#334155;#22c55e;#22c55e" keyTimes="0;0.12;1"
+               dur="9.600000000000001s" begin="0.0s" repeatCount="indefinite"/>
+    </circle>
+    <text x="48" y="20" fill="#e2e8f0" font-size="16" font-weight="700">1  Plan</text>
+    <text x="48" y="38" fill="#94a3b8" font-size="12.5">aep: adversary profile -&gt; phased ATT&amp;CK plan</text>
+  </g>
+  <g transform="translate(60 178)">
+    <rect width="780" height="46" rx="8" fill="#111c33" stroke="#1e293b"/>
+    <rect width="780" height="46" rx="8" fill="#14532d" opacity="0">
+      <animate attributeName="opacity" values="0;1;1;0.25" keyTimes="0;0.12;0.8;1"
+               dur="9.600000000000001s" begin="1.6s" repeatCount="indefinite"/>
+    </rect>
+    <circle cx="26" cy="23" r="9" fill="#334155">
+      <animate attributeName="fill" values="#334155;#22c55e;#22c55e" keyTimes="0;0.12;1"
+               dur="9.600000000000001s" begin="1.6s" repeatCount="indefinite"/>
+    </circle>
+    <text x="48" y="20" fill="#e2e8f0" font-size="16" font-weight="700">2  Telemetry</text>
+    <text x="48" y="38" fill="#94a3b8" font-size="12.5">synthetic events in 3 SIEM formats + benign noise + ground truth</text>
+  </g>
+  <g transform="translate(60 236)">
+    <rect width="780" height="46" rx="8" fill="#111c33" stroke="#1e293b"/>
+    <rect width="780" height="46" rx="8" fill="#14532d" opacity="0">
+      <animate attributeName="opacity" values="0;1;1;0.25" keyTimes="0;0.12;0.8;1"
+               dur="9.600000000000001s" begin="3.2s" repeatCount="indefinite"/>
+    </rect>
+    <circle cx="26" cy="23" r="9" fill="#334155">
+      <animate attributeName="fill" values="#334155;#22c55e;#22c55e" keyTimes="0;0.12;1"
+               dur="9.600000000000001s" begin="3.2s" repeatCount="indefinite"/>
+    </circle>
+    <text x="48" y="20" fill="#e2e8f0" font-size="16" font-weight="700">3  Detect</text>
+    <text x="48" y="38" fill="#94a3b8" font-size="12.5">mini-SIEM Sigma/correlation | Splunk SPL | Sentinel KQL</text>
+  </g>
+  <g transform="translate(60 294)">
+    <rect width="780" height="46" rx="8" fill="#111c33" stroke="#1e293b"/>
+    <rect width="780" height="46" rx="8" fill="#14532d" opacity="0">
+      <animate attributeName="opacity" values="0;1;1;0.25" keyTimes="0;0.12;0.8;1"
+               dur="9.600000000000001s" begin="4.800000000000001s" repeatCount="indefinite"/>
+    </rect>
+    <circle cx="26" cy="23" r="9" fill="#334155">
+      <animate attributeName="fill" values="#334155;#22c55e;#22c55e" keyTimes="0;0.12;1"
+               dur="9.600000000000001s" begin="4.800000000000001s" repeatCount="indefinite"/>
+    </circle>
+    <text x="48" y="20" fill="#e2e8f0" font-size="16" font-weight="700">4  Triage</text>
+    <text x="48" y="38" fill="#94a3b8" font-size="12.5">ai-soc-copilot verdicts + ml-threat-detection scoring</text>
+  </g>
+  <g transform="translate(60 352)">
+    <rect width="780" height="46" rx="8" fill="#111c33" stroke="#1e293b"/>
+    <rect width="780" height="46" rx="8" fill="#14532d" opacity="0">
+      <animate attributeName="opacity" values="0;1;1;0.25" keyTimes="0;0.12;0.8;1"
+               dur="9.600000000000001s" begin="6.4s" repeatCount="indefinite"/>
+    </rect>
+    <circle cx="26" cy="23" r="9" fill="#334155">
+      <animate attributeName="fill" values="#334155;#22c55e;#22c55e" keyTimes="0;0.12;1"
+               dur="9.600000000000001s" begin="6.4s" repeatCount="indefinite"/>
+    </circle>
+    <text x="48" y="20" fill="#e2e8f0" font-size="16" font-weight="700">5  Score</text>
+    <text x="48" y="38" fill="#94a3b8" font-size="12.5">coverage %, MTTD, Venn, ATT&amp;CK Navigator layer</text>
+  </g>
+  <g transform="translate(60 410)">
+    <rect width="780" height="46" rx="8" fill="#111c33" stroke="#1e293b"/>
+    <rect width="780" height="46" rx="8" fill="#14532d" opacity="0">
+      <animate attributeName="opacity" values="0;1;1;0.25" keyTimes="0;0.12;0.8;1"
+               dur="9.600000000000001s" begin="8.0s" repeatCount="indefinite"/>
+    </rect>
+    <circle cx="26" cy="23" r="9" fill="#334155">
+      <animate attributeName="fill" values="#334155;#22c55e;#22c55e" keyTimes="0;0.12;1"
+               dur="9.600000000000001s" begin="8.0s" repeatCount="indefinite"/>
+    </circle>
+    <text x="48" y="20" fill="#e2e8f0" font-size="16" font-weight="700">6  Report</text>
+    <text x="48" y="38" fill="#94a3b8" font-size="12.5">Markdown + HTML + SVG timeline + NIST 800-61 incident report</text>
+  </g>
+  
+  <g transform="translate(60 430)">
+    <rect width="182" height="64" rx="10" fill="#0b1120" stroke="#1e293b"/>
+    <text x="16" y="34" fill="#38bdf8" font-size="24" font-weight="800">43.3%</text>
+    <text x="16" y="52" fill="#94a3b8" font-size="12">coverage</text>
+  </g>
+  <g transform="translate(258 430)">
+    <rect width="182" height="64" rx="10" fill="#0b1120" stroke="#1e293b"/>
+    <text x="16" y="34" fill="#22c55e" font-size="24" font-weight="800">13/30</text>
+    <text x="16" y="52" fill="#94a3b8" font-size="12">techniques</text>
+  </g>
+  <g transform="translate(456 430)">
+    <rect width="182" height="64" rx="10" fill="#0b1120" stroke="#1e293b"/>
+    <text x="16" y="34" fill="#facc15" font-size="24" font-weight="800">5s</text>
+    <text x="16" y="52" fill="#94a3b8" font-size="12">mean MTTD</text>
+  </g>
+  <g transform="translate(654 430)">
+    <rect width="182" height="64" rx="10" fill="#0b1120" stroke="#1e293b"/>
+    <text x="16" y="34" fill="#f87171" font-size="24" font-weight="800">6</text>
+    <text x="16" y="52" fill="#94a3b8" font-size="12">false pos.</text>
+  </g>
+</svg>

@@ -1,0 +1,49 @@
+[
+  {
+    "detector": "beacon",
+    "ran": true,
+    "reason": "",
+    "scored_units": 21,
+    "alert_count": 1,
+    "alerts": [
+      {
+        "rule": "C2 beaconing (flow periodicity)",
+        "score": 0.9082,
+        "severity": "critical",
+        "message": "10.20.5.53 -> 203.0.113.66:443 shows beacon-like timing: 24 connections every ~60 s (100% regular, size CV 0.00, composite 0.91).",
+        "techniques": [
+          "T1071.001",
+          "T1573"
+        ],
+        "src_ip": "10.20.5.53",
+        "dst_ip": "203.0.113.66",
+        "host": null
+      }
+    ]
+  },
+  {
+    "detector": "process",
+    "ran": true,
+    "reason": "",
+    "scored_units": 690,
+    "alert_count": 1,
+    "alerts": [
+      {
+        "rule": "Process creation anomaly",
+        "score": 0.8514,
+        "severity": "high",
+        "message": "winword.exe -> powershell.exe on WS-RAD-03 is anomalous mainly because of enc flag, hidden flag and office parent shell.",
+        "techniques": [
+          "T1059.001",
+          "T1218",
+          "T1105",
+          "T1204.002",
+          "T1047"
+        ],
+        "src_ip": null,
+        "dst_ip": null,
+        "host": "WS-RAD-03"
+      }
+    ]
+  }
+]

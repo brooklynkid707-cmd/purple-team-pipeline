@@ -1,0 +1,1735 @@
+{
+  "schema": "aep-plan/1.0",
+  "generated": "2026-10-23T18:19:43Z",
+  "exercise_name": "Purple-team emulation - Group A - Ransomware Affiliate (healthcare/finance)",
+  "profile": "ransomware-affiliate",
+  "profile_name": "Group A - Ransomware Affiliate (healthcare/finance)",
+  "environment": {
+    "name": "Regional Hospital - clinical and corporate IT (lab)",
+    "os_mix": [
+      "Windows Server 2022 (AD, file, Exchange on-prem)",
+      "Windows 11 clinical workstations",
+      "Windows 10 corporate laptops",
+      "Linux (RHEL) application servers"
+    ],
+    "data_sources": [
+      "Process",
+      "Command",
+      "Logon Session",
+      "Windows Registry",
+      "Service",
+      "Scheduled Job",
+      "Network Traffic",
+      "File"
+    ],
+    "siem": "Microsoft Sentinel",
+    "edr": "Microsoft Defender for Endpoint (servers + 60% of workstations)",
+    "blackout_windows": [
+      "Weekdays 06:00-20:00 (clinical hours) - no destructive or DoS-adjacent tests",
+      "Month-end billing run (last 2 business days)"
+    ],
+    "notes": "Clinical safety first: impact-tactic techniques run only against the isolated lab replica, never against clinical VLANs. DNS tunneling and module-load detections are blind spots (logs not collected) and are expected gaps.\n"
+  },
+  "technique_count": 30,
+  "technique_ids": [
+    "T1566.001",
+    "T1133",
+    "T1078",
+    "T1059.001",
+    "T1569.002",
+    "T1053.005",
+    "T1543.003",
+    "T1548.002",
+    "T1134",
+    "T1562.001",
+    "T1070.001",
+    "T1003.001",
+    "T1558.003",
+    "T1110.003",
+    "T1087.002",
+    "T1018",
+    "T1482",
+    "T1021.001",
+    "T1021.002",
+    "T1550.002",
+    "T1570",
+    "T1560.001",
+    "T1005",
+    "T1567.002",
+    "T1041",
+    "T1071.001",
+    "T1105",
+    "T1489",
+    "T1490",
+    "T1486"
+  ],
+  "phase_count": 12,
+  "phases": [
+    {
+      "phase": "initial-access",
+      "phase_rank": 2,
+      "techniques": [
+        {
+          "technique_id": "T1566.001",
+          "technique_name": "Spearphishing Attachment",
+          "tactic": "initial-access",
+          "objective": "Emulate Spearphishing Attachment (T1566.001) and confirm the SOC can detect it.",
+          "atomic_test_ids": [],
+          "atomic_tests": [],
+          "prerequisites": [
+            "Written authorization for this host/technique is on file (see ROE).",
+            "A designated non-production target host is available.",
+            "Telemetry for Application Log, File is being collected (or the gap is accepted and noted)."
+          ],
+          "expected_telemetry": {
+            "log_events": [
+              "Email gateway logs",
+              "Sysmon 11 (file create)"
+            ],
+            "data_sources": [
+              "Application Log",
+              "File"
+            ],
+            "collected_here": [
+              "File"
+            ],
+            "blind_spots": [
+              "Application Log"
+            ],
+            "observable": true
+          },
+          "detection_checklist": [
+            {
+              "type": "sigma",
+              "title": "Office Application Spawning Script Host",
+              "logic": "parent in (winword,excel,outlook) AND child in (cmd,powershell,wscript,mshta)",
+              "source_repo": "splunk-threat-detection-lab",
+              "status": "planned"
+            }
+          ],
+          "success_criteria": [
+            "Atomic test(s) (manual) execute in the lab without error.",
+            "Expected telemetry is present in Microsoft Sentinel within the agreed detection window.",
+            "At least one detection in the checklist fires an alert."
+          ],
+          "rollback": "Remove any artifacts created by the test; confirm the host is back to its pre-test state.",
+          "risk_rating": "medium"
+        },
+        {
+          "technique_id": "T1133",
+          "technique_name": "External Remote Services",
+          "tactic": "initial-access",
+          "objective": "Emulate External Remote Services (T1133) and confirm the SOC can detect it.",
+          "atomic_test_ids": [],
+          "atomic_tests": [],
+          "prerequisites": [
+            "Written authorization for this host/technique is on file (see ROE).",
+            "A designated non-production target host is available.",
+            "Telemetry for Logon Session, Network Traffic is being collected (or the gap is accepted and noted)."
+          ],
+          "expected_telemetry": {
+            "log_events": [
+              "VPN logs",
+              "Security 4624 (type 10)"
+            ],
+            "data_sources": [
+              "Logon Session",
+              "Network Traffic"
+            ],
+            "collected_here": [
+              "Logon Session",
+              "Network Traffic"
+            ],
+            "blind_spots": [],
+            "observable": true
+          },
+          "detection_checklist": [
+            {
+              "type": "gap",
+              "title": "No prebuilt detection for T1133 - author one",
+              "logic": "Build a rule over VPN logs, Security 4624 (type 10)",
+              "source_repo": null,
+              "status": "to-build"
+            }
+          ],
+          "success_criteria": [
+            "Atomic test(s) (manual) execute in the lab without error.",
+            "Expected telemetry is present in Microsoft Sentinel within the agreed detection window.",
+            "Coverage gap confirmed: no alert fires (finding to remediate)."
+          ],
+          "rollback": "Remove any artifacts created by the test; confirm the host is back to its pre-test state.",
+          "risk_rating": "medium"
+        },
+        {
+          "technique_id": "T1078",
+          "technique_name": "Valid Accounts",
+          "tactic": "initial-access",
+          "objective": "Emulate Valid Accounts (T1078) and confirm the SOC can detect it.",
+          "atomic_test_ids": [],
+          "atomic_tests": [],
+          "prerequisites": [
+            "Written authorization for this host/technique is on file (see ROE).",
+            "A designated non-production target host is available.",
+            "Telemetry for Logon Session is being collected (or the gap is accepted and noted)."
+          ],
+          "expected_telemetry": {
+            "log_events": [
+              "Security 4624",
+              "SigninLogs"
+            ],
+            "data_sources": [
+              "Logon Session"
+            ],
+            "collected_here": [
+              "Logon Session"
+            ],
+            "blind_spots": [],
+            "observable": true
+          },
+          "detection_checklist": [
+            {
+              "type": "kql",
+              "title": "signin-high-risk-successful / impossible-travel",
+              "logic": "SigninLogs RiskLevelDuringSignIn=high ResultType=0; or geo-velocity > threshold",
+              "source_repo": "microsoft-sentinel-detection-engineering",
+              "status": "planned"
+            }
+          ],
+          "success_criteria": [
+            "Atomic test(s) (manual) execute in the lab without error.",
+            "Expected telemetry is present in Microsoft Sentinel within the agreed detection window.",
+            "At least one detection in the checklist fires an alert."
+          ],
+          "rollback": "Remove any artifacts created by the test; confirm the host is back to its pre-test state.",
+          "risk_rating": "medium"
+        }
+      ]
+    },
+    {
+      "phase": "execution",
+      "phase_rank": 3,
+      "techniques": [
+        {
+          "technique_id": "T1059.001",
+          "technique_name": "PowerShell",
+          "tactic": "execution",
+          "objective": "Emulate PowerShell (T1059.001) and confirm the SOC can detect it.",
+          "atomic_test_ids": [
+            "T1059.001-1",
+            "T1059.001-2",
+            "T1059.001-5"
+          ],
+          "atomic_tests": [
+            {
+              "test_id": "T1059.001-1",
+              "title": "Mshta/PowerShell download cradle"
+            },
+            {
+              "test_id": "T1059.001-2",
+              "title": "PowerShell -EncodedCommand execution"
+            },
+            {
+              "test_id": "T1059.001-5",
+              "title": "PowerShell invoke known malicious cmdlet name"
+            }
+          ],
+          "prerequisites": [
+            "Written authorization for this host/technique is on file (see ROE).",
+            "Telemetry for Process, Command, Script is being collected (or the gap is accepted and noted)."
+          ],
+          "expected_telemetry": {
+            "log_events": [
+              "Security 4688",
+              "Sysmon 1",
+              "PowerShell 4104 (script block)"
+            ],
+            "data_sources": [
+              "Process",
+              "Command",
+              "Script"
+            ],
+            "collected_here": [
+              "Process",
+              "Command"
+            ],
+            "blind_spots": [
+              "Script"
+            ],
+            "observable": true
+          },
+          "detection_checklist": [
+            {
+              "type": "sigma",
+              "title": "Encoded PowerShell Command Line",
+              "logic": "process == powershell AND command_line contains '-enc'/'-encodedcommand'",
+              "source_repo": "splunk-threat-detection-lab",
+              "status": "planned"
+            },
+            {
+              "type": "kql",
+              "title": "sec-4688-encoded-powershell",
+              "logic": "SecurityEvent | where NewProcessName endswith 'powershell.exe' and CommandLine matches regex '-e[ncodema]* [A-Za-z0-9+/=]{30,}'",
+              "source_repo": "microsoft-sentinel-detection-engineering",
+              "status": "planned"
+            }
+          ],
+          "success_criteria": [
+            "Atomic test(s) T1059.001-1, T1059.001-2, T1059.001-5 execute in the lab without error.",
+            "Expected telemetry is present in Microsoft Sentinel within the agreed detection window.",
+            "At least one detection in the checklist fires an alert."
+          ],
+          "rollback": "Remove any artifacts created by the test; confirm the host is back to its pre-test state.",
+          "risk_rating": "medium"
+        },
+        {
+          "technique_id": "T1569.002",
+          "technique_name": "System Services: Service Execution",
+          "tactic": "execution",
+          "objective": "Emulate System Services: Service Execution (T1569.002) and confirm the SOC can detect it.",
+          "atomic_test_ids": [],
+          "atomic_tests": [],
+          "prerequisites": [
+            "Written authorization for this host/technique is on file (see ROE).",
+            "Telemetry for Process, Service is being collected (or the gap is accepted and noted)."
+          ],
+          "expected_telemetry": {
+            "log_events": [
+              "Security 7045",
+              "Security 4697",
+              "Sysmon 1"
+            ],
+            "data_sources": [
+              "Process",
+              "Service"
+            ],
+            "collected_here": [
+              "Process",
+              "Service"
+            ],
+            "blind_spots": [],
+            "observable": true
+          },
+          "detection_checklist": [
+            {
+              "type": "gap",
+              "title": "No prebuilt detection for T1569.002 - author one",
+              "logic": "Build a rule over Security 7045, Security 4697, Sysmon 1",
+              "source_repo": null,
+              "status": "to-build"
+            }
+          ],
+          "success_criteria": [
+            "Atomic test(s) (manual) execute in the lab without error.",
+            "Expected telemetry is present in Microsoft Sentinel within the agreed detection window.",
+            "Coverage gap confirmed: no alert fires (finding to remediate)."
+          ],
+          "rollback": "Remove any artifacts created by the test; confirm the host is back to its pre-test state.",
+          "risk_rating": "medium"
+        }
+      ]
+    },
+    {
+      "phase": "persistence",
+      "phase_rank": 4,
+      "techniques": [
+        {
+          "technique_id": "T1053.005",
+          "technique_name": "Scheduled Task",
+          "tactic": "persistence",
+          "objective": "Emulate Scheduled Task (T1053.005) and confirm the SOC can detect it.",
+          "atomic_test_ids": [
+            "T1053.005-1",
+            "T1053.005-6"
+          ],
+          "atomic_tests": [
+            {
+              "test_id": "T1053.005-1",
+              "title": "Scheduled task via schtasks"
+            },
+            {
+              "test_id": "T1053.005-6",
+              "title": "Scheduled task that re-runs at logon"
+            }
+          ],
+          "prerequisites": [
+            "Written authorization for this host/technique is on file (see ROE).",
+            "Telemetry for Scheduled Job, Process is being collected (or the gap is accepted and noted)."
+          ],
+          "expected_telemetry": {
+            "log_events": [
+              "Security 4698",
+              "Sysmon 1 (schtasks)"
+            ],
+            "data_sources": [
+              "Scheduled Job",
+              "Process"
+            ],
+            "collected_here": [
+              "Scheduled Job",
+              "Process"
+            ],
+            "blind_spots": [],
+            "observable": true
+          },
+          "detection_checklist": [
+            {
+              "type": "kql",
+              "title": "sec-4698-scheduled-task-created",
+              "logic": "SecurityEvent EventID==4698 | parse task XML for Command/Arguments; flag scripting hosts & user-writable paths",
+              "source_repo": "microsoft-sentinel-detection-engineering",
+              "status": "planned"
+            }
+          ],
+          "success_criteria": [
+            "Atomic test(s) T1053.005-1, T1053.005-6 execute in the lab without error.",
+            "Expected telemetry is present in Microsoft Sentinel within the agreed detection window.",
+            "At least one detection in the checklist fires an alert."
+          ],
+          "rollback": "Remove the created account/task/service/registry value; confirm no autostart remains.",
+          "risk_rating": "medium"
+        },
+        {
+          "technique_id": "T1543.003",
+          "technique_name": "Create or Modify System Process: Windows Service",
+          "tactic": "persistence",
+          "objective": "Emulate Create or Modify System Process: Windows Service (T1543.003) and confirm the SOC can detect it.",
+          "atomic_test_ids": [
+            "T1543.003-1",
+            "T1543.003-4"
+          ],
+          "atomic_tests": [
+            {
+              "test_id": "T1543.003-1",
+              "title": "Create a Windows service (sc create)"
+            },
+            {
+              "test_id": "T1543.003-4",
+              "title": "Modify an existing service binary path"
+            }
+          ],
+          "prerequisites": [
+            "Written authorization for this host/technique is on file (see ROE).",
+            "Telemetry for Service, Process is being collected (or the gap is accepted and noted)."
+          ],
+          "expected_telemetry": {
+            "log_events": [
+              "Security 7045",
+              "Security 4697",
+              "Sysmon 13"
+            ],
+            "data_sources": [
+              "Service",
+              "Process"
+            ],
+            "collected_here": [
+              "Service",
+              "Process"
+            ],
+            "blind_spots": [],
+            "observable": true
+          },
+          "detection_checklist": [
+            {
+              "type": "kql",
+              "title": "sec-7045-new-service-installed",
+              "logic": "union SecurityEvent(4697), Event(System 7045) | where ImagePath suspicious or random 8-16 char name",
+              "source_repo": "microsoft-sentinel-detection-engineering",
+              "status": "planned"
+            }
+          ],
+          "success_criteria": [
+            "Atomic test(s) T1543.003-1, T1543.003-4 execute in the lab without error.",
+            "Expected telemetry is present in Microsoft Sentinel within the agreed detection window.",
+            "At least one detection in the checklist fires an alert."
+          ],
+          "rollback": "Remove the created account/task/service/registry value; confirm no autostart remains.",
+          "risk_rating": "medium"
+        }
+      ]
+    },
+    {
+      "phase": "privilege-escalation",
+      "phase_rank": 5,
+      "techniques": [
+        {
+          "technique_id": "T1548.002",
+          "technique_name": "Abuse Elevation Control: Bypass UAC",
+          "tactic": "privilege-escalation",
+          "objective": "Emulate Abuse Elevation Control: Bypass UAC (T1548.002) and confirm the SOC can detect it.",
+          "atomic_test_ids": [
+            "T1548.002-1"
+          ],
+          "atomic_tests": [
+            {
+              "test_id": "T1548.002-1",
+              "title": "Bypass UAC using a known auto-elevate path"
+            }
+          ],
+          "prerequisites": [
+            "Written authorization for this host/technique is on file (see ROE).",
+            "Telemetry for Process, Windows Registry is being collected (or the gap is accepted and noted)."
+          ],
+          "expected_telemetry": {
+            "log_events": [
+              "Sysmon 1",
+              "Sysmon 13"
+            ],
+            "data_sources": [
+              "Process",
+              "Windows Registry"
+            ],
+            "collected_here": [
+              "Process",
+              "Windows Registry"
+            ],
+            "blind_spots": [],
+            "observable": true
+          },
+          "detection_checklist": [
+            {
+              "type": "gap",
+              "title": "No prebuilt detection for T1548.002 - author one",
+              "logic": "Build a rule over Sysmon 1, Sysmon 13",
+              "source_repo": null,
+              "status": "to-build"
+            }
+          ],
+          "success_criteria": [
+            "Atomic test(s) T1548.002-1 execute in the lab without error.",
+            "Expected telemetry is present in Microsoft Sentinel within the agreed detection window.",
+            "Coverage gap confirmed: no alert fires (finding to remediate)."
+          ],
+          "rollback": "Revert any token/UAC/GPO change; reboot the test host if elevation artifacts persist.",
+          "risk_rating": "high"
+        },
+        {
+          "technique_id": "T1134",
+          "technique_name": "Access Token Manipulation",
+          "tactic": "privilege-escalation",
+          "objective": "Emulate Access Token Manipulation (T1134) and confirm the SOC can detect it.",
+          "atomic_test_ids": [],
+          "atomic_tests": [],
+          "prerequisites": [
+            "Written authorization for this host/technique is on file (see ROE).",
+            "Telemetry for Process is being collected (or the gap is accepted and noted)."
+          ],
+          "expected_telemetry": {
+            "log_events": [
+              "Security 4624 (type 9)",
+              "Sysmon 1"
+            ],
+            "data_sources": [
+              "Process"
+            ],
+            "collected_here": [
+              "Process"
+            ],
+            "blind_spots": [],
+            "observable": true
+          },
+          "detection_checklist": [
+            {
+              "type": "gap",
+              "title": "No prebuilt detection for T1134 - author one",
+              "logic": "Build a rule over Security 4624 (type 9), Sysmon 1",
+              "source_repo": null,
+              "status": "to-build"
+            }
+          ],
+          "success_criteria": [
+            "Atomic test(s) (manual) execute in the lab without error.",
+            "Expected telemetry is present in Microsoft Sentinel within the agreed detection window.",
+            "Coverage gap confirmed: no alert fires (finding to remediate)."
+          ],
+          "rollback": "Revert any token/UAC/GPO change; reboot the test host if elevation artifacts persist.",
+          "risk_rating": "high"
+        }
+      ]
+    },
+    {
+      "phase": "defense-evasion",
+      "phase_rank": 6,
+      "techniques": [
+        {
+          "technique_id": "T1562.001",
+          "technique_name": "Impair Defenses: Disable or Modify Tools",
+          "tactic": "defense-evasion",
+          "objective": "Emulate Impair Defenses: Disable or Modify Tools (T1562.001) and confirm the SOC can detect it.",
+          "atomic_test_ids": [
+            "T1562.001-1",
+            "T1562.001-7"
+          ],
+          "atomic_tests": [
+            {
+              "test_id": "T1562.001-1",
+              "title": "Disable a security product service"
+            },
+            {
+              "test_id": "T1562.001-7",
+              "title": "Add a tampering exclusion"
+            }
+          ],
+          "prerequisites": [
+            "Written authorization for this host/technique is on file (see ROE).",
+            "A clean pre-test snapshot/backup of the target host exists.",
+            "Telemetry for Windows Registry, Service, Command is being collected (or the gap is accepted and noted)."
+          ],
+          "expected_telemetry": {
+            "log_events": [
+              "Security 4688",
+              "Defender 5001",
+              "Sysmon 13"
+            ],
+            "data_sources": [
+              "Windows Registry",
+              "Service",
+              "Command"
+            ],
+            "collected_here": [
+              "Windows Registry",
+              "Service",
+              "Command"
+            ],
+            "blind_spots": [],
+            "observable": true
+          },
+          "detection_checklist": [
+            {
+              "type": "gap",
+              "title": "No prebuilt detection for T1562.001 - author one",
+              "logic": "Build a rule over Security 4688, Defender 5001, Sysmon 13",
+              "source_repo": null,
+              "status": "to-build"
+            }
+          ],
+          "success_criteria": [
+            "Atomic test(s) T1562.001-1, T1562.001-7 execute in the lab without error.",
+            "Expected telemetry is present in Microsoft Sentinel within the agreed detection window.",
+            "Coverage gap confirmed: no alert fires (finding to remediate)."
+          ],
+          "rollback": "Re-enable any disabled logging/security tooling and restore audit policy; re-ingest cleared logs from backup.",
+          "risk_rating": "high"
+        },
+        {
+          "technique_id": "T1070.001",
+          "technique_name": "Indicator Removal: Clear Windows Event Logs",
+          "tactic": "defense-evasion",
+          "objective": "Emulate Indicator Removal: Clear Windows Event Logs (T1070.001) and confirm the SOC can detect it.",
+          "atomic_test_ids": [
+            "T1070.001-1",
+            "T1070.001-2"
+          ],
+          "atomic_tests": [
+            {
+              "test_id": "T1070.001-1",
+              "title": "Clear the Windows Security event log"
+            },
+            {
+              "test_id": "T1070.001-2",
+              "title": "Clear all event logs via wevtutil"
+            }
+          ],
+          "prerequisites": [
+            "Written authorization for this host/technique is on file (see ROE).",
+            "A clean pre-test snapshot/backup of the target host exists.",
+            "Telemetry for Windows Registry, Command is being collected (or the gap is accepted and noted)."
+          ],
+          "expected_telemetry": {
+            "log_events": [
+              "Security 1102",
+              "System 104"
+            ],
+            "data_sources": [
+              "Windows Registry",
+              "Command"
+            ],
+            "collected_here": [
+              "Windows Registry",
+              "Command"
+            ],
+            "blind_spots": [],
+            "observable": true
+          },
+          "detection_checklist": [
+            {
+              "type": "kql",
+              "title": "sec-1102-security-log-cleared",
+              "logic": "SecurityEvent EventID==1102 (any)",
+              "source_repo": "microsoft-sentinel-detection-engineering",
+              "status": "planned"
+            },
+            {
+              "type": "splunk",
+              "title": "Windows Event Log Cleared (1102/104)",
+              "logic": "index=win (EventCode=1102 OR EventCode=104) | stats count by host,user",
+              "source_repo": "splunk-threat-detection-lab",
+              "status": "planned"
+            }
+          ],
+          "success_criteria": [
+            "Atomic test(s) T1070.001-1, T1070.001-2 execute in the lab without error.",
+            "Expected telemetry is present in Microsoft Sentinel within the agreed detection window.",
+            "At least one detection in the checklist fires an alert."
+          ],
+          "rollback": "Re-enable any disabled logging/security tooling and restore audit policy; re-ingest cleared logs from backup.",
+          "risk_rating": "high"
+        }
+      ]
+    },
+    {
+      "phase": "credential-access",
+      "phase_rank": 7,
+      "techniques": [
+        {
+          "technique_id": "T1003.001",
+          "technique_name": "OS Credential Dumping: LSASS Memory",
+          "tactic": "credential-access",
+          "objective": "Emulate OS Credential Dumping: LSASS Memory (T1003.001) and confirm the SOC can detect it.",
+          "atomic_test_ids": [
+            "T1003.001-1",
+            "T1003.001-2"
+          ],
+          "atomic_tests": [
+            {
+              "test_id": "T1003.001-1",
+              "title": "Dump LSASS via a known tool"
+            },
+            {
+              "test_id": "T1003.001-2",
+              "title": "Create a LSASS minidump with comsvcs.dll"
+            }
+          ],
+          "prerequisites": [
+            "Written authorization for this host/technique is on file (see ROE).",
+            "A clean pre-test snapshot/backup of the target host exists.",
+            "Telemetry for Process, Command is being collected (or the gap is accepted and noted)."
+          ],
+          "expected_telemetry": {
+            "log_events": [
+              "Sysmon 10 (lsass access)",
+              "Security 4688"
+            ],
+            "data_sources": [
+              "Process",
+              "Command"
+            ],
+            "collected_here": [
+              "Process",
+              "Command"
+            ],
+            "blind_spots": [],
+            "observable": true
+          },
+          "detection_checklist": [
+            {
+              "type": "kql",
+              "title": "mde-lsass-memory-dump",
+              "logic": "DeviceProcessEvents | procdump/comsvcs MiniDump/known dumpers targeting lsass",
+              "source_repo": "microsoft-sentinel-detection-engineering",
+              "status": "planned"
+            },
+            {
+              "type": "sigma",
+              "title": "LSASS Access by Non-Allowlisted Process",
+              "logic": "Sysmon 10 TargetImage=lsass.exe AND SourceImage NOT in allowlist AND GrantedAccess in (0x1010,0x1410,0x1fffff)",
+              "source_repo": "splunk-threat-detection-lab",
+              "status": "planned"
+            }
+          ],
+          "success_criteria": [
+            "Atomic test(s) T1003.001-1, T1003.001-2 execute in the lab without error.",
+            "Expected telemetry is present in Microsoft Sentinel within the agreed detection window.",
+            "At least one detection in the checklist fires an alert."
+          ],
+          "rollback": "Rotate any test credentials touched; purge dumped artifacts from disk.",
+          "risk_rating": "high"
+        },
+        {
+          "technique_id": "T1558.003",
+          "technique_name": "Steal or Forge Kerberos Tickets: Kerberoasting",
+          "tactic": "credential-access",
+          "objective": "Emulate Steal or Forge Kerberos Tickets: Kerberoasting (T1558.003) and confirm the SOC can detect it.",
+          "atomic_test_ids": [
+            "T1558.003-1"
+          ],
+          "atomic_tests": [
+            {
+              "test_id": "T1558.003-1",
+              "title": "Request RC4 service tickets (kerberoast)"
+            }
+          ],
+          "prerequisites": [
+            "Written authorization for this host/technique is on file (see ROE).",
+            "A clean pre-test snapshot/backup of the target host exists.",
+            "Telemetry for Logon Session is being collected (or the gap is accepted and noted)."
+          ],
+          "expected_telemetry": {
+            "log_events": [
+              "Security 4769 (RC4/0x17)"
+            ],
+            "data_sources": [
+              "Logon Session"
+            ],
+            "collected_here": [
+              "Logon Session"
+            ],
+            "blind_spots": [],
+            "observable": true
+          },
+          "detection_checklist": [
+            {
+              "type": "sigma",
+              "title": "Kerberoasting - RC4 Service Ticket Requests",
+              "logic": "Security 4769 TicketEncryptionType=0x17 AND ServiceName != krbtgt | stats by Account",
+              "source_repo": "siem-from-scratch",
+              "status": "planned"
+            }
+          ],
+          "success_criteria": [
+            "Atomic test(s) T1558.003-1 execute in the lab without error.",
+            "Expected telemetry is present in Microsoft Sentinel within the agreed detection window.",
+            "At least one detection in the checklist fires an alert."
+          ],
+          "rollback": "Rotate any test credentials touched; purge dumped artifacts from disk.",
+          "risk_rating": "high"
+        },
+        {
+          "technique_id": "T1110.003",
+          "technique_name": "Brute Force: Password Spraying",
+          "tactic": "credential-access",
+          "objective": "Emulate Brute Force: Password Spraying (T1110.003) and confirm the SOC can detect it.",
+          "atomic_test_ids": [
+            "T1110.003-1",
+            "T1110.003-2"
+          ],
+          "atomic_tests": [
+            {
+              "test_id": "T1110.003-1",
+              "title": "Password spray against local accounts"
+            },
+            {
+              "test_id": "T1110.003-2",
+              "title": "Domain password spray simulation"
+            }
+          ],
+          "prerequisites": [
+            "Written authorization for this host/technique is on file (see ROE).",
+            "A clean pre-test snapshot/backup of the target host exists.",
+            "Telemetry for Logon Session, User Account is being collected (or the gap is accepted and noted)."
+          ],
+          "expected_telemetry": {
+            "log_events": [
+              "Security 4625",
+              "Security 4771",
+              "SigninLogs"
+            ],
+            "data_sources": [
+              "Logon Session",
+              "User Account"
+            ],
+            "collected_here": [
+              "Logon Session"
+            ],
+            "blind_spots": [
+              "User Account"
+            ],
+            "observable": true
+          },
+          "detection_checklist": [
+            {
+              "type": "kql",
+              "title": "signin-password-spray-by-ip / sec-4776-ntlm-password-spray",
+              "logic": "group failures by source; DistinctUsers>=10 AND AttemptsPerAccount<=3 within 1h",
+              "source_repo": "microsoft-sentinel-detection-engineering",
+              "status": "planned"
+            },
+            {
+              "type": "splunk",
+              "title": "Password Spraying - One Source Many Accounts",
+              "logic": "EventCode=4625 | stats dc(Account_Name) as users by src | where users>=10",
+              "source_repo": "splunk-threat-detection-lab",
+              "status": "planned"
+            }
+          ],
+          "success_criteria": [
+            "Atomic test(s) T1110.003-1, T1110.003-2 execute in the lab without error.",
+            "Expected telemetry is present in Microsoft Sentinel within the agreed detection window.",
+            "At least one detection in the checklist fires an alert."
+          ],
+          "rollback": "Rotate any test credentials touched; purge dumped artifacts from disk.",
+          "risk_rating": "high"
+        }
+      ]
+    },
+    {
+      "phase": "discovery",
+      "phase_rank": 8,
+      "techniques": [
+        {
+          "technique_id": "T1087.002",
+          "technique_name": "Account Discovery: Domain Account",
+          "tactic": "discovery",
+          "objective": "Emulate Account Discovery: Domain Account (T1087.002) and confirm the SOC can detect it.",
+          "atomic_test_ids": [
+            "T1087.002-1"
+          ],
+          "atomic_tests": [
+            {
+              "test_id": "T1087.002-1",
+              "title": "Enumerate domain accounts with net/dsquery"
+            }
+          ],
+          "prerequisites": [
+            "Written authorization for this host/technique is on file (see ROE).",
+            "Telemetry for Process, Command is being collected (or the gap is accepted and noted)."
+          ],
+          "expected_telemetry": {
+            "log_events": [
+              "Security 4688 (net/dsquery)",
+              "Security 4661"
+            ],
+            "data_sources": [
+              "Process",
+              "Command"
+            ],
+            "collected_here": [
+              "Process",
+              "Command"
+            ],
+            "blind_spots": [],
+            "observable": true
+          },
+          "detection_checklist": [
+            {
+              "type": "gap",
+              "title": "No prebuilt detection for T1087.002 - author one",
+              "logic": "Build a rule over Security 4688 (net/dsquery), Security 4661",
+              "source_repo": null,
+              "status": "to-build"
+            }
+          ],
+          "success_criteria": [
+            "Atomic test(s) T1087.002-1 execute in the lab without error.",
+            "Expected telemetry is present in Microsoft Sentinel within the agreed detection window.",
+            "Coverage gap confirmed: no alert fires (finding to remediate)."
+          ],
+          "rollback": "Remove any artifacts created by the test; confirm the host is back to its pre-test state.",
+          "risk_rating": "low"
+        },
+        {
+          "technique_id": "T1018",
+          "technique_name": "Remote System Discovery",
+          "tactic": "discovery",
+          "objective": "Emulate Remote System Discovery (T1018) and confirm the SOC can detect it.",
+          "atomic_test_ids": [
+            "T1018-1"
+          ],
+          "atomic_tests": [
+            {
+              "test_id": "T1018-1",
+              "title": "Remote system discovery via net view"
+            }
+          ],
+          "prerequisites": [
+            "Written authorization for this host/technique is on file (see ROE).",
+            "Telemetry for Process, Command, Network Traffic is being collected (or the gap is accepted and noted)."
+          ],
+          "expected_telemetry": {
+            "log_events": [
+              "Security 4688 (net view/ping)",
+              "Sysmon 3"
+            ],
+            "data_sources": [
+              "Process",
+              "Command",
+              "Network Traffic"
+            ],
+            "collected_here": [
+              "Process",
+              "Command",
+              "Network Traffic"
+            ],
+            "blind_spots": [],
+            "observable": true
+          },
+          "detection_checklist": [
+            {
+              "type": "gap",
+              "title": "No prebuilt detection for T1018 - author one",
+              "logic": "Build a rule over Security 4688 (net view/ping), Sysmon 3",
+              "source_repo": null,
+              "status": "to-build"
+            }
+          ],
+          "success_criteria": [
+            "Atomic test(s) T1018-1 execute in the lab without error.",
+            "Expected telemetry is present in Microsoft Sentinel within the agreed detection window.",
+            "Coverage gap confirmed: no alert fires (finding to remediate)."
+          ],
+          "rollback": "Remove any artifacts created by the test; confirm the host is back to its pre-test state.",
+          "risk_rating": "low"
+        },
+        {
+          "technique_id": "T1482",
+          "technique_name": "Domain Trust Discovery",
+          "tactic": "discovery",
+          "objective": "Emulate Domain Trust Discovery (T1482) and confirm the SOC can detect it.",
+          "atomic_test_ids": [
+            "T1482-1"
+          ],
+          "atomic_tests": [
+            {
+              "test_id": "T1482-1",
+              "title": "Domain trust discovery via nltest"
+            }
+          ],
+          "prerequisites": [
+            "Written authorization for this host/technique is on file (see ROE).",
+            "Telemetry for Process, Command is being collected (or the gap is accepted and noted)."
+          ],
+          "expected_telemetry": {
+            "log_events": [
+              "Security 4688 (nltest)",
+              "Sysmon 1"
+            ],
+            "data_sources": [
+              "Process",
+              "Command"
+            ],
+            "collected_here": [
+              "Process",
+              "Command"
+            ],
+            "blind_spots": [],
+            "observable": true
+          },
+          "detection_checklist": [
+            {
+              "type": "gap",
+              "title": "No prebuilt detection for T1482 - author one",
+              "logic": "Build a rule over Security 4688 (nltest), Sysmon 1",
+              "source_repo": null,
+              "status": "to-build"
+            }
+          ],
+          "success_criteria": [
+            "Atomic test(s) T1482-1 execute in the lab without error.",
+            "Expected telemetry is present in Microsoft Sentinel within the agreed detection window.",
+            "Coverage gap confirmed: no alert fires (finding to remediate)."
+          ],
+          "rollback": "Remove any artifacts created by the test; confirm the host is back to its pre-test state.",
+          "risk_rating": "low"
+        }
+      ]
+    },
+    {
+      "phase": "lateral-movement",
+      "phase_rank": 9,
+      "techniques": [
+        {
+          "technique_id": "T1021.001",
+          "technique_name": "Remote Services: RDP",
+          "tactic": "lateral-movement",
+          "objective": "Emulate Remote Services: RDP (T1021.001) and confirm the SOC can detect it.",
+          "atomic_test_ids": [
+            "T1021.001-1"
+          ],
+          "atomic_tests": [
+            {
+              "test_id": "T1021.001-1",
+              "title": "RDP session to a remote host"
+            }
+          ],
+          "prerequisites": [
+            "Written authorization for this host/technique is on file (see ROE).",
+            "A designated non-production target host is available.",
+            "Telemetry for Logon Session, Network Traffic is being collected (or the gap is accepted and noted)."
+          ],
+          "expected_telemetry": {
+            "log_events": [
+              "Security 4624 (type 10)",
+              "Security 4778"
+            ],
+            "data_sources": [
+              "Logon Session",
+              "Network Traffic"
+            ],
+            "collected_here": [
+              "Logon Session",
+              "Network Traffic"
+            ],
+            "blind_spots": [],
+            "observable": true
+          },
+          "detection_checklist": [
+            {
+              "type": "kql",
+              "title": "tdl-005 RDP to multiple hosts by one user",
+              "logic": "Security 4624 LogonType==10 | summarize dc(Computer) by Account within 1h >= N",
+              "source_repo": "splunk-threat-detection-lab",
+              "status": "planned"
+            }
+          ],
+          "success_criteria": [
+            "Atomic test(s) T1021.001-1 execute in the lab without error.",
+            "Expected telemetry is present in Microsoft Sentinel within the agreed detection window.",
+            "At least one detection in the checklist fires an alert."
+          ],
+          "rollback": "Close remote sessions; remove any transferred tooling from destination hosts.",
+          "risk_rating": "high"
+        },
+        {
+          "technique_id": "T1021.002",
+          "technique_name": "Remote Services: SMB/Windows Admin Shares",
+          "tactic": "lateral-movement",
+          "objective": "Emulate Remote Services: SMB/Windows Admin Shares (T1021.002) and confirm the SOC can detect it.",
+          "atomic_test_ids": [
+            "T1021.002-1",
+            "T1021.002-3"
+          ],
+          "atomic_tests": [
+            {
+              "test_id": "T1021.002-1",
+              "title": "Copy and execute via admin share"
+            },
+            {
+              "test_id": "T1021.002-3",
+              "title": "PsExec-style remote service execution"
+            }
+          ],
+          "prerequisites": [
+            "Written authorization for this host/technique is on file (see ROE).",
+            "A designated non-production target host is available.",
+            "Telemetry for Logon Session, Network Share is being collected (or the gap is accepted and noted)."
+          ],
+          "expected_telemetry": {
+            "log_events": [
+              "Security 4624 (type 3)",
+              "Security 5140",
+              "Sysmon 1 (psexec)"
+            ],
+            "data_sources": [
+              "Logon Session",
+              "Network Share"
+            ],
+            "collected_here": [
+              "Logon Session"
+            ],
+            "blind_spots": [
+              "Network Share"
+            ],
+            "observable": true
+          },
+          "detection_checklist": [
+            {
+              "type": "splunk",
+              "title": "SMB Admin Share Fan-Out",
+              "logic": "EventCode=5140 ShareName in (ADMIN$,C$) | stats dc(dest) by src_user",
+              "source_repo": "splunk-threat-detection-lab",
+              "status": "planned"
+            }
+          ],
+          "success_criteria": [
+            "Atomic test(s) T1021.002-1, T1021.002-3 execute in the lab without error.",
+            "Expected telemetry is present in Microsoft Sentinel within the agreed detection window.",
+            "At least one detection in the checklist fires an alert."
+          ],
+          "rollback": "Close remote sessions; remove any transferred tooling from destination hosts.",
+          "risk_rating": "high"
+        },
+        {
+          "technique_id": "T1550.002",
+          "technique_name": "Use Alternate Authentication Material: Pass the Hash",
+          "tactic": "lateral-movement",
+          "objective": "Emulate Use Alternate Authentication Material: Pass the Hash (T1550.002) and confirm the SOC can detect it.",
+          "atomic_test_ids": [
+            "T1550.002-1"
+          ],
+          "atomic_tests": [
+            {
+              "test_id": "T1550.002-1",
+              "title": "Pass-the-hash simulation with a test tool"
+            }
+          ],
+          "prerequisites": [
+            "Written authorization for this host/technique is on file (see ROE).",
+            "A designated non-production target host is available.",
+            "Telemetry for Logon Session is being collected (or the gap is accepted and noted)."
+          ],
+          "expected_telemetry": {
+            "log_events": [
+              "Security 4624 (type 3, NTLM)",
+              "Security 4776"
+            ],
+            "data_sources": [
+              "Logon Session"
+            ],
+            "collected_here": [
+              "Logon Session"
+            ],
+            "blind_spots": [],
+            "observable": true
+          },
+          "detection_checklist": [
+            {
+              "type": "sigma",
+              "title": "Pass-the-Hash NTLM Logon",
+              "logic": "Security 4624 LogonType=3 AuthenticationPackage=NTLM AND KeyLength=0 (and 4776)",
+              "source_repo": "siem-from-scratch",
+              "status": "planned"
+            }
+          ],
+          "success_criteria": [
+            "Atomic test(s) T1550.002-1 execute in the lab without error.",
+            "Expected telemetry is present in Microsoft Sentinel within the agreed detection window.",
+            "At least one detection in the checklist fires an alert."
+          ],
+          "rollback": "Close remote sessions; remove any transferred tooling from destination hosts.",
+          "risk_rating": "high"
+        },
+        {
+          "technique_id": "T1570",
+          "technique_name": "Lateral Tool Transfer",
+          "tactic": "lateral-movement",
+          "objective": "Emulate Lateral Tool Transfer (T1570) and confirm the SOC can detect it.",
+          "atomic_test_ids": [],
+          "atomic_tests": [],
+          "prerequisites": [
+            "Written authorization for this host/technique is on file (see ROE).",
+            "A designated non-production target host is available.",
+            "Telemetry for Network Share, File is being collected (or the gap is accepted and noted)."
+          ],
+          "expected_telemetry": {
+            "log_events": [
+              "Security 5145",
+              "Sysmon 11"
+            ],
+            "data_sources": [
+              "Network Share",
+              "File"
+            ],
+            "collected_here": [
+              "File"
+            ],
+            "blind_spots": [
+              "Network Share"
+            ],
+            "observable": true
+          },
+          "detection_checklist": [
+            {
+              "type": "gap",
+              "title": "No prebuilt detection for T1570 - author one",
+              "logic": "Build a rule over Security 5145, Sysmon 11",
+              "source_repo": null,
+              "status": "to-build"
+            }
+          ],
+          "success_criteria": [
+            "Atomic test(s) (manual) execute in the lab without error.",
+            "Expected telemetry is present in Microsoft Sentinel within the agreed detection window.",
+            "Coverage gap confirmed: no alert fires (finding to remediate)."
+          ],
+          "rollback": "Close remote sessions; remove any transferred tooling from destination hosts.",
+          "risk_rating": "high"
+        }
+      ]
+    },
+    {
+      "phase": "collection",
+      "phase_rank": 10,
+      "techniques": [
+        {
+          "technique_id": "T1560.001",
+          "technique_name": "Archive Collected Data: Archive via Utility",
+          "tactic": "collection",
+          "objective": "Emulate Archive Collected Data: Archive via Utility (T1560.001) and confirm the SOC can detect it.",
+          "atomic_test_ids": [
+            "T1560.001-1"
+          ],
+          "atomic_tests": [
+            {
+              "test_id": "T1560.001-1",
+              "title": "Archive data with a command-line utility"
+            }
+          ],
+          "prerequisites": [
+            "Written authorization for this host/technique is on file (see ROE).",
+            "Telemetry for Process, Command, File is being collected (or the gap is accepted and noted)."
+          ],
+          "expected_telemetry": {
+            "log_events": [
+              "Sysmon 1 (rar/7z/tar)",
+              "Sysmon 11"
+            ],
+            "data_sources": [
+              "Process",
+              "Command",
+              "File"
+            ],
+            "collected_here": [
+              "Process",
+              "Command",
+              "File"
+            ],
+            "blind_spots": [],
+            "observable": true
+          },
+          "detection_checklist": [
+            {
+              "type": "gap",
+              "title": "No prebuilt detection for T1560.001 - author one",
+              "logic": "Build a rule over Sysmon 1 (rar/7z/tar), Sysmon 11",
+              "source_repo": null,
+              "status": "to-build"
+            }
+          ],
+          "success_criteria": [
+            "Atomic test(s) T1560.001-1 execute in the lab without error.",
+            "Expected telemetry is present in Microsoft Sentinel within the agreed detection window.",
+            "Coverage gap confirmed: no alert fires (finding to remediate)."
+          ],
+          "rollback": "Delete staged/archived data from the test host.",
+          "risk_rating": "medium"
+        },
+        {
+          "technique_id": "T1005",
+          "technique_name": "Data from Local System",
+          "tactic": "collection",
+          "objective": "Emulate Data from Local System (T1005) and confirm the SOC can detect it.",
+          "atomic_test_ids": [],
+          "atomic_tests": [],
+          "prerequisites": [
+            "Written authorization for this host/technique is on file (see ROE).",
+            "Telemetry for File, Command is being collected (or the gap is accepted and noted)."
+          ],
+          "expected_telemetry": {
+            "log_events": [
+              "Sysmon 1",
+              "Security 4663"
+            ],
+            "data_sources": [
+              "File",
+              "Command"
+            ],
+            "collected_here": [
+              "File",
+              "Command"
+            ],
+            "blind_spots": [],
+            "observable": true
+          },
+          "detection_checklist": [
+            {
+              "type": "gap",
+              "title": "No prebuilt detection for T1005 - author one",
+              "logic": "Build a rule over Sysmon 1, Security 4663",
+              "source_repo": null,
+              "status": "to-build"
+            }
+          ],
+          "success_criteria": [
+            "Atomic test(s) (manual) execute in the lab without error.",
+            "Expected telemetry is present in Microsoft Sentinel within the agreed detection window.",
+            "Coverage gap confirmed: no alert fires (finding to remediate)."
+          ],
+          "rollback": "Delete staged/archived data from the test host.",
+          "risk_rating": "medium"
+        }
+      ]
+    },
+    {
+      "phase": "command-and-control",
+      "phase_rank": 11,
+      "techniques": [
+        {
+          "technique_id": "T1071.001",
+          "technique_name": "Application Layer Protocol: Web Protocols",
+          "tactic": "command-and-control",
+          "objective": "Emulate Application Layer Protocol: Web Protocols (T1071.001) and confirm the SOC can detect it.",
+          "atomic_test_ids": [
+            "T1071.001-1"
+          ],
+          "atomic_tests": [
+            {
+              "test_id": "T1071.001-1",
+              "title": "Beacon-like HTTP requests to a test server"
+            }
+          ],
+          "prerequisites": [
+            "Written authorization for this host/technique is on file (see ROE).",
+            "Telemetry for Network Traffic is being collected (or the gap is accepted and noted)."
+          ],
+          "expected_telemetry": {
+            "log_events": [
+              "Proxy logs",
+              "Zeek http.log",
+              "Sysmon 3"
+            ],
+            "data_sources": [
+              "Network Traffic"
+            ],
+            "collected_here": [
+              "Network Traffic"
+            ],
+            "blind_spots": [],
+            "observable": true
+          },
+          "detection_checklist": [
+            {
+              "type": "kql",
+              "title": "csl-firewall-beaconing",
+              "logic": "CommonSecurityLog | inter-arrival via prev(); >=20 conns, jitter<10%, period 30s-1h",
+              "source_repo": "microsoft-sentinel-detection-engineering",
+              "status": "planned"
+            },
+            {
+              "type": "splunk",
+              "title": "tdl-011 Beaconing Regular Interval",
+              "logic": "compute delta between outbound conns per src,dst,port; low stdev/mean",
+              "source_repo": "splunk-threat-detection-lab",
+              "status": "planned"
+            }
+          ],
+          "success_criteria": [
+            "Atomic test(s) T1071.001-1 execute in the lab without error.",
+            "Expected telemetry is present in Microsoft Sentinel within the agreed detection window.",
+            "At least one detection in the checklist fires an alert."
+          ],
+          "rollback": "Tear down the test C2 listener; remove downloaded tooling.",
+          "risk_rating": "medium"
+        },
+        {
+          "technique_id": "T1105",
+          "technique_name": "Ingress Tool Transfer",
+          "tactic": "command-and-control",
+          "objective": "Emulate Ingress Tool Transfer (T1105) and confirm the SOC can detect it.",
+          "atomic_test_ids": [
+            "T1105-1",
+            "T1105-6"
+          ],
+          "atomic_tests": [
+            {
+              "test_id": "T1105-1",
+              "title": "Download a file with certutil"
+            },
+            {
+              "test_id": "T1105-6",
+              "title": "Download a file with PowerShell"
+            }
+          ],
+          "prerequisites": [
+            "Written authorization for this host/technique is on file (see ROE).",
+            "Telemetry for Network Traffic, File is being collected (or the gap is accepted and noted)."
+          ],
+          "expected_telemetry": {
+            "log_events": [
+              "Proxy logs",
+              "Sysmon 1/3/11"
+            ],
+            "data_sources": [
+              "Network Traffic",
+              "File"
+            ],
+            "collected_here": [
+              "Network Traffic",
+              "File"
+            ],
+            "blind_spots": [],
+            "observable": true
+          },
+          "detection_checklist": [
+            {
+              "type": "sigma",
+              "title": "Certutil/BITS/PowerShell Download Cradle",
+              "logic": "process in (certutil,bitsadmin,powershell) AND command_line contains url / '-urlcache' / 'DownloadString'",
+              "source_repo": "siem-from-scratch",
+              "status": "planned"
+            }
+          ],
+          "success_criteria": [
+            "Atomic test(s) T1105-1, T1105-6 execute in the lab without error.",
+            "Expected telemetry is present in Microsoft Sentinel within the agreed detection window.",
+            "At least one detection in the checklist fires an alert."
+          ],
+          "rollback": "Tear down the test C2 listener; remove downloaded tooling.",
+          "risk_rating": "medium"
+        }
+      ]
+    },
+    {
+      "phase": "exfiltration",
+      "phase_rank": 12,
+      "techniques": [
+        {
+          "technique_id": "T1567.002",
+          "technique_name": "Exfiltration to Cloud Storage",
+          "tactic": "exfiltration",
+          "objective": "Emulate Exfiltration to Cloud Storage (T1567.002) and confirm the SOC can detect it.",
+          "atomic_test_ids": [
+            "T1567.002-1"
+          ],
+          "atomic_tests": [
+            {
+              "test_id": "T1567.002-1",
+              "title": "Upload a file to cloud storage"
+            }
+          ],
+          "prerequisites": [
+            "Written authorization for this host/technique is on file (see ROE).",
+            "Telemetry for Network Traffic is being collected (or the gap is accepted and noted)."
+          ],
+          "expected_telemetry": {
+            "log_events": [
+              "Proxy logs",
+              "CASB logs"
+            ],
+            "data_sources": [
+              "Network Traffic"
+            ],
+            "collected_here": [
+              "Network Traffic"
+            ],
+            "blind_spots": [],
+            "observable": true
+          },
+          "detection_checklist": [
+            {
+              "type": "gap",
+              "title": "No prebuilt detection for T1567.002 - author one",
+              "logic": "Build a rule over Proxy logs, CASB logs",
+              "source_repo": null,
+              "status": "to-build"
+            }
+          ],
+          "success_criteria": [
+            "Atomic test(s) T1567.002-1 execute in the lab without error.",
+            "Expected telemetry is present in Microsoft Sentinel within the agreed detection window.",
+            "Coverage gap confirmed: no alert fires (finding to remediate)."
+          ],
+          "rollback": "Delete uploaded test data from the external sink; confirm no real data left the environment.",
+          "risk_rating": "high"
+        },
+        {
+          "technique_id": "T1041",
+          "technique_name": "Exfiltration Over C2 Channel",
+          "tactic": "exfiltration",
+          "objective": "Emulate Exfiltration Over C2 Channel (T1041) and confirm the SOC can detect it.",
+          "atomic_test_ids": [
+            "T1041-1"
+          ],
+          "atomic_tests": [
+            {
+              "test_id": "T1041-1",
+              "title": "Exfiltrate a file over the C2 HTTP channel"
+            }
+          ],
+          "prerequisites": [
+            "Written authorization for this host/technique is on file (see ROE).",
+            "Telemetry for Network Traffic is being collected (or the gap is accepted and noted)."
+          ],
+          "expected_telemetry": {
+            "log_events": [
+              "Proxy logs",
+              "NetFlow byte counts"
+            ],
+            "data_sources": [
+              "Network Traffic"
+            ],
+            "collected_here": [
+              "Network Traffic"
+            ],
+            "blind_spots": [],
+            "observable": true
+          },
+          "detection_checklist": [
+            {
+              "type": "gap",
+              "title": "No prebuilt detection for T1041 - author one",
+              "logic": "Build a rule over Proxy logs, NetFlow byte counts",
+              "source_repo": null,
+              "status": "to-build"
+            }
+          ],
+          "success_criteria": [
+            "Atomic test(s) T1041-1 execute in the lab without error.",
+            "Expected telemetry is present in Microsoft Sentinel within the agreed detection window.",
+            "Coverage gap confirmed: no alert fires (finding to remediate)."
+          ],
+          "rollback": "Delete uploaded test data from the external sink; confirm no real data left the environment.",
+          "risk_rating": "high"
+        }
+      ]
+    },
+    {
+      "phase": "impact",
+      "phase_rank": 13,
+      "techniques": [
+        {
+          "technique_id": "T1489",
+          "technique_name": "Service Stop",
+          "tactic": "impact",
+          "objective": "Emulate Service Stop (T1489) and confirm the SOC can detect it.",
+          "atomic_test_ids": [
+            "T1489-1"
+          ],
+          "atomic_tests": [
+            {
+              "test_id": "T1489-1",
+              "title": "Stop a service with net stop"
+            }
+          ],
+          "prerequisites": [
+            "Written authorization for this host/technique is on file (see ROE).",
+            "A clean pre-test snapshot/backup of the target host exists.",
+            "Telemetry for Service, Process is being collected (or the gap is accepted and noted)."
+          ],
+          "expected_telemetry": {
+            "log_events": [
+              "Security 7036",
+              "Security 4688 (net stop)"
+            ],
+            "data_sources": [
+              "Service",
+              "Process"
+            ],
+            "collected_here": [
+              "Service",
+              "Process"
+            ],
+            "blind_spots": [],
+            "observable": true
+          },
+          "detection_checklist": [
+            {
+              "type": "sigma",
+              "title": "Service Stop Before Impact",
+              "logic": "process=net.exe/sc.exe 'stop' targeting DB/security/backup services",
+              "source_repo": "siem-from-scratch",
+              "status": "planned"
+            }
+          ],
+          "success_criteria": [
+            "Atomic test(s) T1489-1 execute in the lab without error.",
+            "Expected telemetry is present in Microsoft Sentinel within the agreed detection window.",
+            "At least one detection in the checklist fires an alert."
+          ],
+          "rollback": "Restore from the pre-test snapshot; verify encrypted/stopped resources are recovered before resuming operations.",
+          "risk_rating": "high"
+        },
+        {
+          "technique_id": "T1490",
+          "technique_name": "Inhibit System Recovery",
+          "tactic": "impact",
+          "objective": "Emulate Inhibit System Recovery (T1490) and confirm the SOC can detect it.",
+          "atomic_test_ids": [
+            "T1490-1",
+            "T1490-3"
+          ],
+          "atomic_tests": [
+            {
+              "test_id": "T1490-1",
+              "title": "Delete volume shadow copies with vssadmin"
+            },
+            {
+              "test_id": "T1490-3",
+              "title": "Disable recovery with bcdedit"
+            }
+          ],
+          "prerequisites": [
+            "Written authorization for this host/technique is on file (see ROE).",
+            "A clean pre-test snapshot/backup of the target host exists.",
+            "Telemetry for Process, Command is being collected (or the gap is accepted and noted)."
+          ],
+          "expected_telemetry": {
+            "log_events": [
+              "Sysmon 1 (vssadmin/wbadmin/bcdedit)",
+              "Security 4688"
+            ],
+            "data_sources": [
+              "Process",
+              "Command"
+            ],
+            "collected_here": [
+              "Process",
+              "Command"
+            ],
+            "blind_spots": [],
+            "observable": true
+          },
+          "detection_checklist": [
+            {
+              "type": "splunk",
+              "title": "Shadow Copy / Backup Deletion",
+              "logic": "EventCode=1 (Image=*vssadmin* delete shadows OR *wbadmin* delete OR *bcdedit* recoveryenabled no)",
+              "source_repo": "splunk-threat-detection-lab",
+              "status": "planned"
+            }
+          ],
+          "success_criteria": [
+            "Atomic test(s) T1490-1, T1490-3 execute in the lab without error.",
+            "Expected telemetry is present in Microsoft Sentinel within the agreed detection window.",
+            "At least one detection in the checklist fires an alert."
+          ],
+          "rollback": "Restore from the pre-test snapshot; verify encrypted/stopped resources are recovered before resuming operations.",
+          "risk_rating": "high"
+        },
+        {
+          "technique_id": "T1486",
+          "technique_name": "Data Encrypted for Impact",
+          "tactic": "impact",
+          "objective": "Emulate Data Encrypted for Impact (T1486) and confirm the SOC can detect it.",
+          "atomic_test_ids": [
+            "T1486-1"
+          ],
+          "atomic_tests": [
+            {
+              "test_id": "T1486-1",
+              "title": "Encrypt files in a test directory (reversible)"
+            }
+          ],
+          "prerequisites": [
+            "Written authorization for this host/technique is on file (see ROE).",
+            "A clean pre-test snapshot/backup of the target host exists.",
+            "Telemetry for File, Process, Command is being collected (or the gap is accepted and noted)."
+          ],
+          "expected_telemetry": {
+            "log_events": [
+              "Sysmon 11 (mass writes)",
+              "Security 4663"
+            ],
+            "data_sources": [
+              "File",
+              "Process",
+              "Command"
+            ],
+            "collected_here": [
+              "File",
+              "Process",
+              "Command"
+            ],
+            "blind_spots": [],
+            "observable": true
+          },
+          "detection_checklist": [
+            {
+              "type": "sigma",
+              "title": "Mass File Modification (Ransomware)",
+              "logic": "Sysmon 11 | high rate of writes/renames with uncommon extension by one process",
+              "source_repo": "siem-from-scratch",
+              "status": "planned"
+            }
+          ],
+          "success_criteria": [
+            "Atomic test(s) T1486-1 execute in the lab without error.",
+            "Expected telemetry is present in Microsoft Sentinel within the agreed detection window.",
+            "At least one detection in the checklist fires an alert."
+          ],
+          "rollback": "Restore from the pre-test snapshot; verify encrypted/stopped resources are recovered before resuming operations.",
+          "risk_rating": "high"
+        }
+      ]
+    }
+  ],
+  "disclaimer": "Planning and detection only. This plan references public Atomic Red Team test identifiers and expected telemetry; it contains no exploit code, payloads or operational attack instructions. Authorized testing of the owner's own systems only - see SCOPE.md and the ROE."
+}
